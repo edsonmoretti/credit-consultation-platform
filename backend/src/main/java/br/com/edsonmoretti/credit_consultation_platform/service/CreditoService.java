@@ -16,6 +16,11 @@ public class CreditoService {
 
     private final CreditoRepository creditoRepository;
 
+    public List<CreditoResponse> findAll() {
+        return creditoRepository.findAll().stream()
+                .map(this::toResponse)
+                .collect(Collectors.toList());
+    }
 
     public List<CreditoResponse> findByNumeroNfse(String numeroNfse) {
         return creditoRepository.findByNumeroNfse(numeroNfse).stream()

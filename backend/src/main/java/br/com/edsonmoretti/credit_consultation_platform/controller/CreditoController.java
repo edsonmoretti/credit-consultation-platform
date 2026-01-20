@@ -18,6 +18,12 @@ public class CreditoController {
 
     private final CreditoService creditoService;
 
+    @GetMapping("")
+    public ResponseEntity<List<CreditoResponse>> healthCheck() {
+        List<CreditoResponse> creditos = creditoService.findAll();
+        return ResponseEntity.ok(creditos);
+    }
+
     @GetMapping("/{numeroNfse}")
     public ResponseEntity<List<CreditoResponse>> getByNumeroNfse(@PathVariable String numeroNfse) {
         List<CreditoResponse> creditos = creditoService.findByNumeroNfse(numeroNfse);
