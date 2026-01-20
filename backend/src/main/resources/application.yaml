@@ -1,3 +1,13 @@
 spring:
   application:
     name: Plataforma de Consulta de Credito
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:db_creditos}}
+    username: ${SPRING_DATASOURCE_USERNAME:${DB_USER:usuario}}
+    password: ${SPRING_DATASOURCE_PASSWORD:${DB_PASSWORD:senha}}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER:org.postgresql.Driver}
+  jpa:
+    database-platform: ${SPRING_JPA_DATABASE_PLATFORM:org.hibernate.dialect.PostgreSQLDialect}
+    hibernate:
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+    show-sql: ${SPRING_JPA_SHOW_SQL:false}
