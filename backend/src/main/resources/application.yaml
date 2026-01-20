@@ -11,3 +11,11 @@ spring:
     hibernate:
       ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
     show-sql: ${SPRING_JPA_SHOW_SQL:false}
+  web:
+    resources:
+      add-mappings: false
+
+server:
+  error:
+    whitelabel:
+      enabled: false
