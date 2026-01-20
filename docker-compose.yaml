@@ -17,3 +17,18 @@ services:
     volumes:
       # Volume mapeado para uma pasta local definida no .env
       - ${DB_VOLUME_PATH}:/var/lib/${DB_TYPE}/data
+  app:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: app_ccp
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:${DB_TYPE}://database:${DB_PORT}/${DB_NAME}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
