@@ -1,0 +1,19 @@
+services:
+  database:
+    env_file: .env  # Força o carregamento do arquivo .env
+    image: ${DB_TYPE}:${DB_VERSION}
+    container_name: db_ccp_${DB_TYPE}
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_ROOT_PASSWORD: root_password_aqui
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    volumes:
+      # Volume mapeado para uma pasta local definida no .env
+      - ${DB_VOLUME_PATH}:/var/lib/${DB_TYPE}/data
