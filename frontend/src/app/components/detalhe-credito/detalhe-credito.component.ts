@@ -39,7 +39,7 @@ import { MatDividerModule } from '@angular/material/divider';
         <div class="p-6 space-y-6">
 
           <!-- Section: Informações Principais -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
               <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">NFS-e</span>
               <p class="text-lg font-medium text-gray-900 mt-1">{{ data.numeroNfse }}</p>
@@ -50,11 +50,11 @@ import { MatDividerModule } from '@angular/material/divider';
             </div>
           </div>
 
-          <mat-divider class="my-2"></mat-divider>
+          <mat-divider></mat-divider>
 
           <!-- Section: Valores -->
           <div>
-            <h3 class="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
+            <h3 class="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2 mt-3">
               <mat-icon class="text-green-600 text-sm h-5 w-5">attach_money</mat-icon>
               Valores do Crédito
             </h3>

@@ -31,7 +31,8 @@ import { Credito } from '../../models/credito.model';
         </div>
       }
 
-      <div class="overflow-x-auto">
+      <!-- Desktop View (Table) -->
+      <div class="hidden md:block overflow-x-auto">
         <table mat-table [dataSource]="dataSource" matSort (matSortChange)="onSortChange($event)" class="w-full">
 
           <!-- Numero Credito Column -->
@@ -62,8 +63,8 @@ import { Credito } from '../../models/credito.model';
 
           <!-- Valor Disponivel Column -->
           <ng-container matColumnDef="valorDisponivel">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-gray-100 text-gray-600 font-bold text-xs uppercase tracking-wider !px-6 !py-4 text-left border-b border-gray-200 hidden md:table-cell"> Valor Disp. </th>
-            <td mat-cell *matCellDef="let element" class="!px-6 !py-4 hidden md:table-cell">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-gray-100 text-gray-600 font-bold text-xs uppercase tracking-wider !px-6 !py-4 text-left border-b border-gray-200"> Valor Disp. </th>
+            <td mat-cell *matCellDef="let element" class="!px-6 !py-4">
               <span class="text-blue-600 font-bold">
                 {{ (element.valorDisponivel !== null ? element.valorDisponivel : element.valorIssqn) | currency:'BRL':'symbol':'1.2-2' }}
               </span>
@@ -72,8 +73,8 @@ import { Credito } from '../../models/credito.model';
 
           <!-- Data Constituicao Column -->
           <ng-container matColumnDef="dataConstituicao">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-gray-100 text-gray-600 font-bold text-xs uppercase tracking-wider !px-6 !py-4 text-left border-b border-gray-200 hidden md:table-cell"> Data </th>
-            <td mat-cell *matCellDef="let element" class="!px-6 !py-4 text-gray-500 text-sm hidden md:table-cell">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-gray-100 text-gray-600 font-bold text-xs uppercase tracking-wider !px-6 !py-4 text-left border-b border-gray-200"> Data </th>
+            <td mat-cell *matCellDef="let element" class="!px-6 !py-4 text-gray-500 text-sm">
               <div class="flex items-center gap-1">
                 <mat-icon class="text-gray-400 text-sm h-4 w-4">calendar_today</mat-icon>
                 {{element.dataConstituicao | date:'dd/MM/yyyy'}}
@@ -110,6 +111,60 @@ import { Credito } from '../../models/credito.model';
             </td>
           </tr>
         </table>
+      </div>
+
+      <!-- Mobile View (Cards) -->
+      <div class="md:hidden bg-gray-50 p-4 space-y-4">
+        @for (credito of creditos; track credito.id) {
+          <div class="bg-white rounded-xl border border-gray-200 p-5 shadow-sm relative overflow-hidden active:scale-[0.98] transition-transform duration-200">
+            <div class="flex justify-between items-start mb-4">
+              <div class="flex items-center gap-3">
+                <div class="bg-indigo-50 p-2.5 rounded-lg border border-indigo-100">
+                  <mat-icon class="text-indigo-600">receipt_long</mat-icon>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500 font-bold uppercase tracking-wide">Crédito</p>
+                  <p class="text-lg font-bold text-gray-800">{{credito.numeroCredito}}</p>
+                </div>
+              </div>
+              <button mat-icon-button color="primary" (click)="verDetalhes(credito)" class="bg-indigo-50 text-indigo-600 hover:bg-indigo-100">
+                <mat-icon>visibility</mat-icon>
+              </button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-y-4 gap-x-2 border-t border-gray-100 pt-4">
+              <div>
+                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">NFS-e</p>
+                <p class="font-medium text-gray-700 text-sm">{{credito.numeroNfse}}</p>
+              </div>
+              <div>
+                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Data</p>
+                <p class="font-medium text-gray-700 text-sm">{{credito.dataConstituicao | date:'dd/MM/yyyy'}}</p>
+              </div>
+              <div>
+                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Valor Crédito</p>
+                <p class="font-bold text-emerald-600 text-sm">
+                  {{ (credito.valorCredito !== null ? credito.valorCredito : credito.valorIssqn) | currency:'BRL':'symbol':'1.2-2' }}
+                </p>
+              </div>
+              <div>
+                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Valor Disp.</p>
+                <p class="font-bold text-blue-600 text-sm">
+                  {{ (credito.valorDisponivel !== null ? credito.valorDisponivel : credito.valorIssqn) | currency:'BRL':'symbol':'1.2-2' }}
+                </p>
+              </div>
+            </div>
+          </div>
+        }
+        @if (creditos.length === 0) {
+          <div class="flex flex-col items-center justify-center py-12 text-center">
+            <div class="bg-white p-4 rounded-full shadow-sm mb-3">
+              <mat-icon class="text-4xl text-gray-300 h-10 w-10">search_off</mat-icon>
+            </div>
+            <p class="text-lg font-medium text-gray-700">Nenhum dado encontrado</p>
+            <p class="text-sm text-gray-400">Tente ajustar os filtros de busca</p>
+          </div>
+        }
       </div>
 
       <mat-paginator [length]="totalElements"
