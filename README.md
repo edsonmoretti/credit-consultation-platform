@@ -7,13 +7,14 @@ O desafio solicitava originalmente o uso das seguintes tecnologias:
 *   **Back-end**: Java 8+, Spring Boot, Spring Data JPA, Hibernate.
 
 ## 🌟 Diferenciais e Extras Implementados
-Além de atender aos requisitos obrigatórios, foram implementadas funcionalidades extras para enriquecer o projeto:
+Além de atender aos requisitos obrigatórios, foram implementadas funcionalidades extras para enriquecer o projeto e demonstrar conhecimentos avançados:
 
+*   **Flyway Migration**: Gerenciamento automatizado de versões do banco de dados. As tabelas e dados iniciais são criados automaticamente ao iniciar a aplicação, eliminando a necessidade de scripts manuais.
 *   **Documentação com Swagger/OpenAPI**: Implementação não solicitada, mas adicionada para facilitar o teste e visualização da API.
-*   **Endpoint de Listagem Geral**: Criação do endpoint `GET /api/creditos` para listar todos os registros de creditos.
-*   **Paginação Customizada**: Implementação de paginação otimizada (`PaginatedResponse`) nos endpoints de listagem para melhor apresentação e experiência no frontend.
-*   **Testes no Docker Compose**: Configuração completa de ambiente para facilitar a execução e testes.
-*   **Java 25**: Utilização da versão mais recente da linguagem (versão LTS).
+*   **Endpoint de Listagem Geral**: Criação do endpoint `GET /api/creditos` para listar todos os registros, funcionalidade não prevista originalmente.
+*   **Paginação Customizada**: Implementação de paginação otimizada (`PaginatedResponse`) nos endpoints de listagem para melhor performance e experiência no frontend.
+*   **Docker & Docker Compose**: Configuração completa de ambiente para facilitar a execução e testes.
+*   **Java 25**: Utilização da versão mais recente da linguagem.
 
 ---
 
@@ -22,6 +23,7 @@ Além de atender aos requisitos obrigatórios, foram implementadas funcionalidad
 *   **Java 25**: Versão mais recente da linguagem.
 *   **Spring Boot 3.5.9**: Framework para desenvolvimento ágil.
 *   **Spring Data JPA**: Abstração para persistência de dados.
+*   **Flyway**: Migração e versionamento de banco de dados.
 *   **Lombok**: Redução de boilerplate code.
 *   **PostgreSQL**: Banco de dados relacional (configurável via Docker).
 *   **Docker & Docker Compose**: Containerização da aplicação e banco de dados.
@@ -113,7 +115,9 @@ Exemplo de estrutura de resposta paginada:
     # ... outras configurações
     ```
 
-4.  Execute o comando para subir a aplicação e o banco de dados:
+4.  **Subir o Ambiente (Aplicação + Banco de Dados):**
+
+    Execute o comando abaixo para iniciar a aplicação e o banco de dados em containers:
 
     ```bash
     docker-compose up -d --build
@@ -122,6 +126,8 @@ Exemplo de estrutura de resposta paginada:
     A API estará disponível em `http://localhost:8080`.
 
     > **Nota:** O arquivo `application.yaml` da aplicação já está configurado para ler automaticamente as variáveis de ambiente definidas no container pelo Docker Compose.
+    >
+    > **Flyway:** Graças à integração com o Flyway, o banco de dados será criado e populado automaticamente com os dados iniciais assim que a aplicação iniciar.
 
 ## 🧪 Testes
 
@@ -129,11 +135,16 @@ O projeto inclui testes automatizados para garantir a integridade das regras de 
 
 ### Executando Testes
 
-Para rodar os testes automatizados dentro do container:
+Para rodar os testes automatizados de forma isolada, utilize o arquivo `docker-compose.test.yaml` criado especificamente para este fim:
 
 ```bash
-docker-compose up backend-test
+docker-compose -f docker-compose.test.yaml up --build --abort-on-container-exit
 ```
+
+Este comando irá:
+1. Subir um container de banco de dados exclusivo para testes.
+2. Construir e executar os testes da aplicação.
+3. Encerrar os containers automaticamente após a conclusão dos testes.
 
 ### Evidências de Testes
 
