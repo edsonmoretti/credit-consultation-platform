@@ -160,9 +160,10 @@ export class AppComponent implements OnInit {
   }
 
   loadData() {
-    this.loading = true;
-    this.creditos = [];
-    this.cdr.detectChanges();
+    if (!this.loading) {
+      this.loading = true;
+      this.cdr.detectChanges();
+    }
 
     const request$ = !this.currentSearchTerm
       ? this.creditoService.getCreditos(this.pageIndex, this.pageSize, this.currentSort)
@@ -174,14 +175,14 @@ export class AppComponent implements OnInit {
           this.creditos = response.content;
           this.totalElements = response.totalElements;
           this.loading = false;
-          this.cdr.detectChanges();
+          this.cdr.markForCheck(); // Força a verificação da árvore de componentes
         });
       },
       error: (err) => {
         this.ngZone.run(() => {
           this.loading = false;
           this.handleError('Erro na busca');
-          this.cdr.detectChanges();
+          this.cdr.markForCheck(); // Força a verificação mesmo em caso de erro
         });
       }
     });
@@ -219,8 +220,10 @@ export class AppComponent implements OnInit {
 
   openDetalhes(credito: Credito) {
     this.ngZone.run(() => {
-      this.loading = true;
-      this.cdr.detectChanges();
+      if (!this.loading) {
+        this.loading = true;
+        this.cdr.detectChanges();
+      }
     });
 
     this.creditoService.getCreditoByNumero(credito.numeroCredito)
@@ -233,7 +236,7 @@ export class AppComponent implements OnInit {
               maxWidth: '95vw',
               data: detalhesCredito
             });
-            this.cdr.detectChanges();
+            this.cdr.markForCheck();
           });
         },
         error: (err) => {
@@ -243,7 +246,7 @@ export class AppComponent implements OnInit {
               duration: 5000,
               panelClass: ['error-snackbar']
             });
-            this.cdr.detectChanges();
+            this.cdr.markForCheck();
           });
         }
       });

@@ -98,6 +98,6 @@ export class BuscaCreditoComponent {
       if (inputElement) {
         inputElement.focus();
       }
-    }, 50);
+    }, 100);
   }
 }
