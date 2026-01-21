@@ -54,7 +54,7 @@ A API possui documentação interativa via Swagger UI.
 
 *   **Acesso à Documentação**: `http://localhost:8080/swagger-ui/index.html`
 
-![Documentação Swagger](_assets/print-api-docs.png)
+![Documentação Swagger](backend/_assets/print-api-docs.png)
 
 ### Endpoints Principais
 
@@ -149,10 +149,10 @@ Este comando irá:
 ### Evidências de Testes
 
 **Teste Local (IDE):**
-![Teste Local](_assets/print-test-local.png)
+![Teste Local](backend/_assets/print-test-local.png)
 
 **Teste via Docker Compose:**
-![Teste Docker Compose](_assets/print-test-on-docker-compose.png)
+![Teste Docker Compose](backend/_assets/print-test-on-docker-compose.png)
 
 ## 👨‍💻 Autor
 
