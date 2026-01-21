@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, NgZone, ɵNoopNgZone } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
@@ -12,6 +12,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
-    provideAnimations()
+    provideAnimations(),
+    // { provide: NgZone, useClass: ɵNoopNgZone } // Uncomment if you want to disable Zone.js entirely (advanced)
   ]
 };

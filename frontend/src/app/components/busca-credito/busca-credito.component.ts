@@ -22,12 +22,16 @@ import { CommonModule } from '@angular/common';
       <mat-form-field appearance="outline" class="w-full md:w-1/2">
         <mat-label>Número da NFS-e ou Crédito</mat-label>
         <input matInput formControlName="termoBusca" placeholder="Ex: 20230001">
-        <mat-error *ngIf="buscaForm.get('termoBusca')?.hasError('required')">
-          O campo é obrigatório
-        </mat-error>
-        <mat-error *ngIf="buscaForm.get('termoBusca')?.hasError('pattern')">
-          Digite apenas números e letras válidas
-        </mat-error>
+        @if (buscaForm.get('termoBusca')?.hasError('required')) {
+          <mat-error>
+            O campo é obrigatório
+          </mat-error>
+        }
+        @if (buscaForm.get('termoBusca')?.hasError('pattern')) {
+          <mat-error>
+            Digite apenas números e letras válidas
+          </mat-error>
+        }
       </mat-form-field>
 
       <button mat-raised-button color="primary" type="submit" [disabled]="buscaForm.invalid" class="h-12 w-full md:w-auto">

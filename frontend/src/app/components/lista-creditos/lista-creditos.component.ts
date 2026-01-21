@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
@@ -120,9 +120,14 @@ export class ListaCreditosComponent implements OnChanges {
   displayedColumns: string[] = ['numeroCredito', 'numeroNfse', 'valorCredito', 'dataConstituicao', 'acoes'];
   dataSource = new MatTableDataSource<Credito>([]);
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['creditos']) {
-      this.dataSource.data = this.creditos;
+      this.dataSource.data = this.creditos || [];
+    }
+    if (changes['loading']) {
+      this.cdr.detectChanges();
     }
   }
 

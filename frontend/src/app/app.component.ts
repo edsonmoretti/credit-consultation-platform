@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule, MatSidenav } from '@angular/material/sidenav';
@@ -141,6 +141,7 @@ export class AppComponent implements OnInit {
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private breakpointObserver: BreakpointObserver,
+    private cdr: ChangeDetectorRef,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -158,7 +159,7 @@ export class AppComponent implements OnInit {
 
   loadData() {
     this.loading = true;
-    this.creditos = [];
+    this.creditos = []; // Clear current data to show loading state properly
 
     if (!this.currentSearchTerm) {
       this.creditoService.getCreditos(this.pageIndex, this.pageSize, this.currentSort).subscribe({
@@ -166,6 +167,7 @@ export class AppComponent implements OnInit {
           this.creditos = response.content;
           this.totalElements = response.totalElements;
           this.loading = false;
+          this.cdr.detectChanges(); // Force change detection
         },
         error: (err) => this.handleError(err)
       });
@@ -179,6 +181,7 @@ export class AppComponent implements OnInit {
           this.creditos = response.content;
           this.totalElements = response.totalElements;
           this.loading = false;
+          this.cdr.detectChanges(); // Force change detection
         } else {
           // If no NFS-e found and we are on the first page, try searching by Credit Number
           if (this.pageIndex === 0) {
@@ -186,6 +189,7 @@ export class AppComponent implements OnInit {
           } else {
             this.loading = false;
             this.totalElements = 0;
+            this.cdr.detectChanges();
           }
         }
       },
@@ -207,6 +211,7 @@ export class AppComponent implements OnInit {
         this.creditos = [credito];
         this.totalElements = 1;
         this.loading = false;
+        this.cdr.detectChanges(); // Force change detection
       },
       error: (err) => {
         this.loading = false;
@@ -214,6 +219,7 @@ export class AppComponent implements OnInit {
           this.handleError(err);
         }
         // If 404, just leave empty list
+        this.cdr.detectChanges();
       }
     });
   }
@@ -225,6 +231,7 @@ export class AppComponent implements OnInit {
       duration: 5000,
       panelClass: ['error-snackbar']
     });
+    this.cdr.detectChanges();
   }
 
   onBusca(termo: string) {
