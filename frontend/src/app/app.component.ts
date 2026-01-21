@@ -160,12 +160,9 @@ export class AppComponent implements OnInit {
   }
 
   loadData() {
-    // Ensure we are running inside Angular Zone
-    this.ngZone.run(() => {
-      this.loading = true;
-      this.creditos = []; // Clear data
-      this.cdr.detectChanges(); // Force UI update to show spinner
-    });
+    this.loading = true;
+    this.creditos = [];
+    this.cdr.detectChanges();
 
     const request$ = !this.currentSearchTerm
       ? this.creditoService.getCreditos(this.pageIndex, this.pageSize, this.currentSort)
@@ -174,16 +171,14 @@ export class AppComponent implements OnInit {
     request$.subscribe({
       next: (response) => {
         this.ngZone.run(() => {
-          console.log('Dados recebidos:', response); // Debug log
           this.creditos = response.content;
           this.totalElements = response.totalElements;
           this.loading = false;
-          this.cdr.detectChanges(); // Force UI update to hide spinner and show data
+          this.cdr.detectChanges();
         });
       },
       error: (err) => {
         this.ngZone.run(() => {
-          console.error('Erro na requisição:', err); // Debug log
           this.loading = false;
           this.handleError('Erro na busca');
           this.cdr.detectChanges();
