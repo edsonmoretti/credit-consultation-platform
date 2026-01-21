@@ -22,9 +22,11 @@ import { Credito } from '../../models/credito.model';
   ],
   template: `
     <div class="relative bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-      <div *ngIf="loading" class="absolute inset-0 bg-white/70 z-10 flex justify-center items-center backdrop-blur-sm">
-        <mat-spinner diameter="40"></mat-spinner>
-      </div>
+      @if (loading) {
+        <div class="absolute inset-0 bg-white/70 z-10 flex justify-center items-center backdrop-blur-sm">
+          <mat-spinner diameter="40"></mat-spinner>
+        </div>
+      }
 
       <div class="overflow-x-auto">
         <table mat-table [dataSource]="dataSource" matSort (matSortChange)="onSortChange($event)" class="w-full">
@@ -43,14 +45,24 @@ import { Credito } from '../../models/credito.model';
 
           <!-- Valor Credito Column -->
           <ng-container matColumnDef="valorCredito">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-gray-50 text-gray-700 font-semibold px-4 py-3 text-left"> Valor </th>
-            <td mat-cell *matCellDef="let element" class="px-4 py-3 font-medium text-green-600"> {{element.valorCredito | currency:'BRL'}} </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-gray-50 text-gray-700 font-semibold px-4 py-3 text-left"> Valor Crédito </th>
+            <td mat-cell *matCellDef="let element" class="px-4 py-3 font-medium text-green-600">
+              {{ (element.valorCredito !== null ? element.valorCredito : element.valorIssqn) | currency:'BRL':'symbol':'1.2-2' }}
+            </td>
+          </ng-container>
+
+          <!-- Valor Disponivel Column -->
+          <ng-container matColumnDef="valorDisponivel">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-gray-50 text-gray-700 font-semibold px-4 py-3 text-left hidden md:table-cell"> Valor Disp. </th>
+            <td mat-cell *matCellDef="let element" class="px-4 py-3 font-medium text-blue-600 hidden md:table-cell">
+              {{ (element.valorDisponivel !== null ? element.valorDisponivel : element.valorIssqn) | currency:'BRL':'symbol':'1.2-2' }}
+            </td>
           </ng-container>
 
           <!-- Data Constituicao Column -->
           <ng-container matColumnDef="dataConstituicao">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-gray-50 text-gray-700 font-semibold px-4 py-3 text-left"> Data </th>
-            <td mat-cell *matCellDef="let element" class="px-4 py-3 text-gray-600"> {{element.dataConstituicao | date:'dd/MM/yyyy'}} </td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-gray-50 text-gray-700 font-semibold px-4 py-3 text-left hidden md:table-cell"> Data </th>
+            <td mat-cell *matCellDef="let element" class="px-4 py-3 text-gray-600 hidden md:table-cell"> {{element.dataConstituicao | date:'dd/MM/yyyy'}} </td>
           </ng-container>
 
           <!-- Actions Column -->
@@ -69,7 +81,7 @@ import { Credito } from '../../models/credito.model';
               class="hover:bg-blue-50 transition-colors duration-150 border-b border-gray-100 last:border-0"></tr>
 
           <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="5" class="p-8 text-center text-gray-500">
+            <td class="mat-cell" colspan="6" class="p-8 text-center text-gray-500">
               <div class="flex flex-col items-center gap-2">
                 <mat-icon class="text-4xl text-gray-300 h-10 w-10">search_off</mat-icon>
                 <span>Nenhum dado encontrado</span>
@@ -117,7 +129,7 @@ export class ListaCreditosComponent implements OnChanges {
   @Output() sortChange = new EventEmitter<Sort>();
   @Output() detalheClick = new EventEmitter<Credito>();
 
-  displayedColumns: string[] = ['numeroCredito', 'numeroNfse', 'valorCredito', 'dataConstituicao', 'acoes'];
+  displayedColumns: string[] = ['numeroCredito', 'numeroNfse', 'valorCredito', 'valorDisponivel', 'dataConstituicao', 'acoes'];
   dataSource = new MatTableDataSource<Credito>([]);
 
   constructor(private cdr: ChangeDetectorRef) {}
