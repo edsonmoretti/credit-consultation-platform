@@ -70,14 +70,9 @@ import { Credito } from './models/credito.model';
               <mat-icon matListItemIcon class="!text-indigo-600">receipt_long</mat-icon>
               <span matListItemTitle class="font-medium">Consulta de Créditos</span>
             </a>
-            <!-- Placeholder for future menu items -->
-            <a mat-list-item class="text-gray-600 hover:bg-gray-50">
-              <mat-icon matListItemIcon class="text-gray-400">settings</mat-icon>
-              <span matListItemTitle>Configurações</span>
-            </a>
             <a mat-list-item class="text-gray-600 hover:bg-gray-50">
               <mat-icon matListItemIcon class="text-gray-400">help</mat-icon>
-              <span matListItemTitle>Ajuda</span>
+              <span matListItemTitle>Sobre</span>
             </a>
           </mat-nav-list>
         </mat-sidenav>
