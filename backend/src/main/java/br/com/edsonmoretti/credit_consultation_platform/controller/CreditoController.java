@@ -29,10 +29,10 @@ public class CreditoController {
     }
 
     @GetMapping("/{numeroNfse}")
-    public ResponseEntity<CreditoResponse> getByNumeroNfse(@PathVariable String numeroNfse) {
-        return creditoService.findByNumeroNfse(numeroNfse)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<PaginatedResponse<CreditoResponse>> getByNumeroNfse(@PathVariable String numeroNfse,
+                                                                 @PageableDefault(page = 0, size = 10) Pageable pageable) {
+        Page<CreditoResponse> creditos = creditoService.findByNumeroNfse(numeroNfse, pageable);
+        return ResponseEntity.ok(toPaginatedResponse(creditos));
     }
 
     @GetMapping("/credito/{numeroCredito}")

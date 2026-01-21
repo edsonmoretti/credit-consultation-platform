@@ -21,8 +21,8 @@ public class CreditoService {
                 .map(this::toResponse);
     }
 
-    public Optional<CreditoResponse> findByNumeroNfse(String numeroNfse) {
-        return creditoRepository.findByNumeroNfse(numeroNfse)
+    public Page<CreditoResponse> findByNumeroNfse(String numeroNfse, Pageable pageable) {
+        return creditoRepository.findByNumeroNfse(numeroNfse, pageable)
                 .map(this::toResponse);
     }
 
