@@ -51,30 +51,20 @@ import { Credito } from '../../models/credito.model';
             <td mat-cell *matCellDef="let element" class="!px-6 !py-4 text-gray-600"> {{element.numeroNfse}} </td>
           </ng-container>
 
-          <!-- Valor Credito Column -->
-          <ng-container matColumnDef="valorCredito">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-gray-100 text-gray-600 font-bold text-xs uppercase tracking-wider !px-6 !py-4 text-left border-b border-gray-200"> Valor Crédito </th>
+          <!-- Valor ISSQN Column (Substituindo Valor Credito) -->
+          <ng-container matColumnDef="valorIssqn">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-gray-100 text-gray-600 font-bold text-xs uppercase tracking-wider !px-6 !py-4 text-left border-b border-gray-200"> Valor ISSQN </th>
             <td mat-cell *matCellDef="let element" class="!px-6 !py-4">
               <span class="text-emerald-600 font-bold bg-emerald-50 px-2 py-1 rounded-md border border-emerald-100">
-                {{ (element.valorCredito !== null ? element.valorCredito : element.valorIssqn) | currency:'BRL':'symbol':'1.2-2' }}
-              </span>
-            </td>
-          </ng-container>
-
-          <!-- Valor Disponivel Column -->
-          <ng-container matColumnDef="valorDisponivel">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-gray-100 text-gray-600 font-bold text-xs uppercase tracking-wider !px-6 !py-4 text-left border-b border-gray-200"> Valor Disp. </th>
-            <td mat-cell *matCellDef="let element" class="!px-6 !py-4">
-              <span class="text-blue-600 font-bold">
-                {{ (element.valorDisponivel !== null ? element.valorDisponivel : element.valorIssqn) | currency:'BRL':'symbol':'1.2-2' }}
+                {{ element.valorIssqn | currency:'BRL':'symbol':'1.2-2' }}
               </span>
             </td>
           </ng-container>
 
           <!-- Data Constituicao Column -->
           <ng-container matColumnDef="dataConstituicao">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-gray-100 text-gray-600 font-bold text-xs uppercase tracking-wider !px-6 !py-4 text-left border-b border-gray-200"> Data </th>
-            <td mat-cell *matCellDef="let element" class="!px-6 !py-4 text-gray-500 text-sm">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-gray-100 text-gray-600 font-bold text-xs uppercase tracking-wider !px-6 !py-4 text-left border-b border-gray-200 hidden md:table-cell"> Data </th>
+            <td mat-cell *matCellDef="let element" class="!px-6 !py-4 text-gray-500 text-sm hidden md:table-cell">
               <div class="flex items-center gap-1">
                 <mat-icon class="text-gray-400 text-sm h-4 w-4">calendar_today</mat-icon>
                 {{element.dataConstituicao | date:'dd/MM/yyyy'}}
@@ -98,7 +88,7 @@ import { Credito } from '../../models/credito.model';
               class="hover:bg-indigo-50/50 transition-all duration-200 border-b border-gray-100 last:border-0 group"></tr>
 
           <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="6" class="p-12 text-center text-gray-500">
+            <td class="mat-cell" colspan="5" class="p-12 text-center text-gray-500">
               <div class="flex flex-col items-center gap-4 animate-fade-in">
                 <div class="bg-gray-50 p-4 rounded-full">
                   <mat-icon class="text-4xl text-gray-300 h-10 w-10">search_off</mat-icon>
@@ -141,16 +131,10 @@ import { Credito } from '../../models/credito.model';
                 <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Data</p>
                 <p class="font-medium text-gray-700 text-sm">{{credito.dataConstituicao | date:'dd/MM/yyyy'}}</p>
               </div>
-              <div>
-                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Valor Crédito</p>
+              <div class="col-span-2">
+                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Valor ISSQN</p>
                 <p class="font-bold text-emerald-600 text-sm">
-                  {{ (credito.valorCredito !== null ? credito.valorCredito : credito.valorIssqn) | currency:'BRL':'symbol':'1.2-2' }}
-                </p>
-              </div>
-              <div>
-                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Valor Disp.</p>
-                <p class="font-bold text-blue-600 text-sm">
-                  {{ (credito.valorDisponivel !== null ? credito.valorDisponivel : credito.valorIssqn) | currency:'BRL':'symbol':'1.2-2' }}
+                  {{ credito.valorIssqn | currency:'BRL':'symbol':'1.2-2' }}
                 </p>
               </div>
             </div>
@@ -205,7 +189,7 @@ export class ListaCreditosComponent implements OnChanges {
   @Output() sortChange = new EventEmitter<Sort>();
   @Output() detalheClick = new EventEmitter<Credito>();
 
-  displayedColumns: string[] = ['numeroCredito', 'numeroNfse', 'valorCredito', 'valorDisponivel', 'dataConstituicao', 'acoes'];
+  displayedColumns: string[] = ['numeroCredito', 'numeroNfse', 'valorIssqn', 'dataConstituicao', 'acoes'];
   dataSource = new MatTableDataSource<Credito>([]);
 
   constructor(private cdr: ChangeDetectorRef) {}

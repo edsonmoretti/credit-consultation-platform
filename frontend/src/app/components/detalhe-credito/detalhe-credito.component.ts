@@ -39,7 +39,7 @@ import { MatDividerModule } from '@angular/material/divider';
         <div class="p-6 space-y-6">
 
           <!-- Section: Informações Principais -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
               <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">NFS-e</span>
               <p class="text-lg font-medium text-gray-900 mt-1">{{ data.numeroNfse }}</p>
@@ -58,18 +58,14 @@ import { MatDividerModule } from '@angular/material/divider';
               <mat-icon class="text-green-600 text-sm h-5 w-5">attach_money</mat-icon>
               Valores do Crédito
             </h3>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div class="p-3 rounded-lg bg-green-50 border border-green-100">
-                <span class="text-xs text-green-700 font-medium">Valor Crédito</span>
-                <p class="text-lg font-bold text-green-800">{{ (data.valorCredito ?? data.valorIssqn) | currency:'BRL':'symbol':'1.2-2' }}</p>
+                <span class="text-xs text-green-700 font-medium">Valor ISSQN</span>
+                <p class="text-lg font-bold text-green-800">{{ data.valorIssqn | currency:'BRL':'symbol':'1.2-2' }}</p>
               </div>
               <div class="p-3 rounded-lg bg-blue-50 border border-blue-100">
-                <span class="text-xs text-blue-700 font-medium">Valor Disponível</span>
-                <p class="text-lg font-bold text-blue-800">{{ (data.valorDisponivel ?? data.valorIssqn) | currency:'BRL':'symbol':'1.2-2' }}</p>
-              </div>
-              <div class="p-3 rounded-lg bg-orange-50 border border-orange-100">
-                <span class="text-xs text-orange-700 font-medium">Valor Utilizado</span>
-                <p class="text-lg font-bold text-orange-800">{{ (data.valorUtilizado ?? 0) | currency:'BRL':'symbol':'1.2-2' }}</p>
+                <span class="text-xs text-blue-700 font-medium">Valor Faturado</span>
+                <p class="text-lg font-bold text-blue-800">{{ data.valorFaturado | currency:'BRL':'symbol':'1.2-2' }}</p>
               </div>
             </div>
           </div>
@@ -78,7 +74,7 @@ import { MatDividerModule } from '@angular/material/divider';
 
           <!-- Section: Detalhes Fiscais -->
           <div>
-            <h3 class="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
+            <h3 class="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2 mt-3">
               <mat-icon class="text-gray-600 text-sm h-5 w-5">info</mat-icon>
               Detalhes Fiscais
             </h3>
@@ -100,24 +96,12 @@ import { MatDividerModule } from '@angular/material/divider';
                 <span class="font-medium text-gray-800">{{ data.aliquota | number:'1.2-2' }}%</span>
               </div>
               <div>
-                <span class="block text-gray-500 text-xs">Valor ISSQN</span>
-                <span class="font-medium text-gray-800">{{ data.valorIssqn | currency:'BRL':'symbol':'1.2-2' }}</span>
-              </div>
-              <div>
-                <span class="block text-gray-500 text-xs">Valor Faturado</span>
-                <span class="font-medium text-gray-800">{{ data.valorFaturado | currency:'BRL':'symbol':'1.2-2' }}</span>
-              </div>
-              <div>
                 <span class="block text-gray-500 text-xs">Base de Cálculo</span>
                 <span class="font-medium text-gray-800">{{ data.baseCalculo | currency:'BRL':'symbol':'1.2-2' }}</span>
               </div>
               <div>
                 <span class="block text-gray-500 text-xs">Valor Dedução</span>
                 <span class="font-medium text-gray-800">{{ data.valorDeducao | currency:'BRL':'symbol':'1.2-2' }}</span>
-              </div>
-              <div>
-                <span class="block text-gray-500 text-xs">Data Carga</span>
-                <span class="font-medium text-gray-800">{{ data.dataCarga ? (data.dataCarga | date:'dd/MM/yyyy') : '-' }}</span>
               </div>
             </div>
           </div>

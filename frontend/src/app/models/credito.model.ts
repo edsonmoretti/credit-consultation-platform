@@ -2,10 +2,6 @@ export interface Credito {
   id: number;
   numeroCredito: string;
   numeroNfse: string;
-  valorCredito: number | null;
-  valorUtilizado: number | null;
-  valorDisponivel: number | null;
-  dataCarga: string | null;
   dataConstituicao: string;
   valorIssqn: number;
   tipoCredito: string;
