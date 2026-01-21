@@ -43,9 +43,6 @@ import { Credito } from './models/credito.model';
         </button>
         <span class="font-bold tracking-wide">Portal de Créditos</span>
         <span class="flex-auto"></span>
-        <button mat-icon-button aria-label="User profile">
-          <mat-icon>account_circle</mat-icon>
-        </button>
       </mat-toolbar>
 
       <mat-sidenav-container class="flex-auto bg-gray-50">
@@ -59,8 +56,9 @@ import { Credito } from './models/credito.model';
                 PC
               </div>
               <div>
-                <p class="font-semibold text-gray-800 text-sm">Usuário Admin</p>
-                <p class="text-xs text-gray-500">admin@portal.com</p>
+                <p class="font-semibold text-gray-800 text-sm">Edson Moretti</p>
+                <p class="text-xs text-gray-500">edsonmoretti@live.com</p>
+                <p class="text-xs text-gray-500">edsonmoretti@gmail.com</p>
               </div>
             </div>
           </div>
@@ -111,7 +109,7 @@ import { Credito } from './models/credito.model';
           </main>
 
           <footer class="p-6 text-center text-gray-500 text-sm border-t border-gray-200 mt-8">
-            <p>&copy; 2023 Plataforma de Consulta de Créditos. Todos os direitos reservados.</p>
+            <p>&copy; 2026 Plataforma de Consulta de Créditos. Todos os direitos reservados.</p>
           </footer>
         </mat-sidenav-content>
       </mat-sidenav-container>
