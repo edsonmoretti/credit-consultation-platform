@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, PLATFORM_ID, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, ViewChild, ChangeDetectorRef, NgZone } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule, MatSidenav } from '@angular/material/sidenav';
@@ -11,7 +11,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { map, shareReplay, finalize } from 'rxjs/operators';
 
 import { BuscaCreditoComponent } from './components/busca-credito/busca-credito.component';
 import { ListaCreditosComponent } from './components/lista-creditos/lista-creditos.component';
@@ -56,7 +56,7 @@ import { Credito } from './models/credito.model';
                 PC
               </div>
               <div>
-                <p class="font-semibold text-gray-800 text-sm">Edson Moretti</p>
+                <p class="font-semibold text-gray-800 text-sm">Edson Moretti do Nascimento</p>
                 <p class="text-xs text-gray-500">edsonmoretti@live.com</p>
                 <p class="text-xs text-gray-500">edsonmoretti@gmail.com</p>
               </div>
@@ -140,6 +140,7 @@ export class AppComponent implements OnInit {
     private dialog: MatDialog,
     private breakpointObserver: BreakpointObserver,
     private cdr: ChangeDetectorRef,
+    private ngZone: NgZone,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -156,45 +157,44 @@ export class AppComponent implements OnInit {
   }
 
   loadData() {
-    this.loading = true;
-    this.creditos = []; // Clear current data to show loading state properly
+    // Ensure we are running inside Angular Zone
+    this.ngZone.run(() => {
+      this.loading = true;
+      this.creditos = []; // Clear data
+      this.cdr.detectChanges(); // Force UI update to show spinner
+    });
 
-    if (!this.currentSearchTerm) {
-      this.creditoService.getCreditos(this.pageIndex, this.pageSize, this.currentSort).subscribe({
-        next: (response) => {
+    const request$ = !this.currentSearchTerm
+      ? this.creditoService.getCreditos(this.pageIndex, this.pageSize, this.currentSort)
+      : this.creditoService.getCreditosByNfse(this.currentSearchTerm, this.pageIndex, this.pageSize, this.currentSort);
+
+    request$.subscribe({
+      next: (response) => {
+        this.ngZone.run(() => {
+          console.log('Dados recebidos:', response); // Debug log
           this.creditos = response.content;
           this.totalElements = response.totalElements;
           this.loading = false;
-          this.cdr.detectChanges(); // Force change detection
-        },
-        error: (err) => this.handleError(err)
-      });
-      return;
-    }
-
-    // Search ONLY by NFS-e
-    this.creditoService.getCreditosByNfse(this.currentSearchTerm, this.pageIndex, this.pageSize, this.currentSort).subscribe({
-      next: (response) => {
-        this.creditos = response.content;
-        this.totalElements = response.totalElements;
-        this.loading = false;
-        this.cdr.detectChanges(); // Force change detection
+          this.cdr.detectChanges(); // Force UI update to hide spinner and show data
+        });
       },
       error: (err) => {
-        this.loading = false;
-        this.handleError('Erro na busca');
+        this.ngZone.run(() => {
+          console.error('Erro na requisição:', err); // Debug log
+          this.loading = false;
+          this.handleError('Erro na busca');
+          this.cdr.detectChanges();
+        });
       }
     });
   }
 
   handleError(err: any) {
     console.error('Erro:', err);
-    this.loading = false;
     this.snackBar.open('Erro ao carregar dados. Tente novamente.', 'Fechar', {
       duration: 5000,
       panelClass: ['error-snackbar']
     });
-    this.cdr.detectChanges();
   }
 
   onBusca(termo: string) {
@@ -220,26 +220,34 @@ export class AppComponent implements OnInit {
   }
 
   openDetalhes(credito: Credito) {
-    // Fetch full details from API before opening modal
-    this.loading = true;
-    this.creditoService.getCreditoByNumero(credito.numeroCredito).subscribe({
-      next: (detalhesCredito) => {
-        this.loading = false;
-        this.dialog.open(DetalheCreditoComponent, {
-          width: '600px', // Increased width for better layout
-          maxWidth: '95vw',
-          data: detalhesCredito
-        });
-        this.cdr.detectChanges();
-      },
-      error: (err) => {
-        this.loading = false;
-        this.snackBar.open('Erro ao carregar detalhes do crédito.', 'Fechar', {
-          duration: 5000,
-          panelClass: ['error-snackbar']
-        });
-        this.cdr.detectChanges();
-      }
+    this.ngZone.run(() => {
+      this.loading = true;
+      this.cdr.detectChanges();
     });
+
+    this.creditoService.getCreditoByNumero(credito.numeroCredito)
+      .subscribe({
+        next: (detalhesCredito) => {
+          this.ngZone.run(() => {
+            this.loading = false;
+            this.dialog.open(DetalheCreditoComponent, {
+              width: '600px',
+              maxWidth: '95vw',
+              data: detalhesCredito
+            });
+            this.cdr.detectChanges();
+          });
+        },
+        error: (err) => {
+          this.ngZone.run(() => {
+            this.loading = false;
+            this.snackBar.open('Erro ao carregar detalhes do crédito.', 'Fechar', {
+              duration: 5000,
+              panelClass: ['error-snackbar']
+            });
+            this.cdr.detectChanges();
+          });
+        }
+      });
   }
 }

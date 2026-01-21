@@ -21,12 +21,7 @@ import { CommonModule } from '@angular/common';
     <form [formGroup]="buscaForm" (ngSubmit)="buscar()" class="flex flex-col md:flex-row gap-4 items-center p-4 bg-white rounded shadow-md">
       <mat-form-field appearance="outline" class="w-full md:w-1/2">
         <mat-label>Número da NFS-e</mat-label>
-        <input matInput formControlName="termoBusca" placeholder="Ex: 20230001">
-        @if (buscaForm.get('termoBusca')?.hasError('required')) {
-          <mat-error>
-            O campo é obrigatório
-          </mat-error>
-        }
+        <input matInput formControlName="termoBusca" placeholder="Ex: 20260001">
         @if (buscaForm.get('termoBusca')?.hasError('pattern')) {
           <mat-error>
             Digite apenas números e letras válidas
@@ -48,13 +43,14 @@ export class BuscaCreditoComponent {
 
   constructor(private fb: FormBuilder) {
     this.buscaForm = this.fb.group({
-      termoBusca: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]+$/)]]
+      termoBusca: ['', [Validators.pattern(/^[a-zA-Z0-9]+$/)]]
     });
   }
 
   buscar() {
     if (this.buscaForm.valid) {
-      this.buscaRealizada.emit(this.buscaForm.get('termoBusca')?.value);
+      // Emite o valor, se estiver vazio será uma string vazia ''
+      this.buscaRealizada.emit(this.buscaForm.get('termoBusca')?.value || '');
     }
   }
 }
