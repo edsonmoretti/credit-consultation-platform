@@ -1,27 +1,24 @@
 # Plataforma de Consulta de Créditos
 
-Este projeto é uma solução para o **Desafio Técnico – Desenvolvimento de API de Consulta de Créditos** da **Infuse Tecnologia**.
+> **Solução para o Desafio Técnico – Infuse Tecnologia**
 
-## 📋 Requisitos do Desafio
-O desafio solicitava originalmente o uso das seguintes tecnologias:
-*   **Back-end**: Java 8+, Spring Boot, Spring Data JPA, Hibernate.
-*   **Front-end**: Angular.
-*   **Funcionalidades**:
-    *   Consulta de créditos por número da NFS-e.
-    *   Exibição detalhada de um crédito ao ser selecionado.
-    *   Responsividade para dispositivos móveis.
-    *   Aplicação containerizada.
+Uma aplicação Fullstack robusta, moderna e containerizada para consulta e gestão de créditos, desenvolvida com **Java 25**, **Spring Boot 3** e **Angular 21**.
+
+![Visão Geral do Sistema](frontend/_assets/print_desktop_tela_principal.png)
+
+---
 
 ## 🌟 Diferenciais e Extras Implementados
-Além de atender aos requisitos obrigatórios, foram implementadas funcionalidades extras para enriquecer o projeto e demonstrar conhecimentos avançados:
+
+Este projeto vai além dos requisitos básicos do desafio, implementando práticas de mercado e tecnologias de ponta para entregar uma experiência superior de desenvolvimento e uso.
 
 ### Backend
 *   **Flyway Migration**: Gerenciamento automatizado de versões do banco de dados. As tabelas e dados iniciais são criados automaticamente ao iniciar a aplicação, eliminando a necessidade de scripts manuais.
-*   **Documentação com Swagger/OpenAPI**: Implementação não solicitada, mas adicionada para facilitar o teste e visualização da API.
+*   **Documentação com Swagger/OpenAPI**: Implementação não solicitada, mas adicionada para facilitar intgração com frontend.
 *   **Endpoint de Listagem Geral**: Criação do endpoint `GET /api/creditos` para listar todos os registros, funcionalidade não prevista originalmente.
 *   **Paginação Customizada**: Implementação de paginação otimizada (`PaginatedResponse`) nos endpoints de listagem para melhor performance e experiência no frontend.
-*   **Docker & Docker Compose**: Configuração completa de ambiente para facilitar a execução e testes.
-*   **Java 25**: Utilização da versão mais recente da linguagem.
+*   **Testes do Backend via Docker & Docker Compose**: Pronto para rodar os testes sem precisar ter todo JDK em ambiente local.
+*   **Java 25**: Utilização da versão mais recente da linguagem (LTS).
 
 ### Frontend
 *   **Menu Lateral**: Interface moderna com menu lateral para melhor navegação.
@@ -31,141 +28,108 @@ Além de atender aos requisitos obrigatórios, foram implementadas funcionalidad
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
-### Backend
-*   **Java 25**: Versão mais recente da linguagem.
-*   **Spring Boot 3.5.9**: Framework para desenvolvimento ágil.
-*   **Spring Data JPA**: Abstração para persistência de dados.
-*   **Flyway**: Migração e versionamento de banco de dados.
-*   **Lombok**: Redução de boilerplate code.
-*   **PostgreSQL**: Banco de dados relacional (configurável via Docker).
-*   **Swagger / OpenAPI**: Documentação interativa da API.
+| Backend | Frontend                     | Infraestrutura |
+| :--- |:-----------------------------| :--- |
+| ☕ **Java 25** | 🅰️ **Angular 21 (via CLI)** | 🐳 **Docker** |
+| 🍃 **Spring Boot 3.5.9** | 🎨 **Angular Material**      | 🐙 **Docker Compose** |
+| 🗄️ **Spring Data JPA** | 💅 **Tailwind CSS**          | 🐘 **PostgreSQL** |
+| 🚀 **Flyway** | 🟦 **TypeScript**            | ☁️ **Swagger UI** |
+| 🌶️ **Lombok** |                              | |
 
-### Frontend
-*   **Angular 21**: Framework moderno para construção de interfaces.
-*   **Angular Material**: Componentes de UI de alta qualidade.
-*   **Tailwind CSS**: Framework CSS utilitário para estilização rápida e responsiva.
-*   **TypeScript**: Superset tipado de JavaScript.
+---
+
+## 📱 Galeria da Interface
+
+A interface foi projetada para ser intuitiva e responsiva.
+
+### Desktop
+| Detalhes em Modal | Busca Filtrada |
+| :---: | :---: |
+| ![Detalhes Desktop](frontend/_assets/print_desktop_detalhes_do_item.png) | ![Buscando Desktop](frontend/_assets/print_desktop_buscando.png) |
+
+### Mobile (Responsivo)
+| Menu Lateral | Tela Principal | Detalhes do Crédito |
+| :---: | :---: | :---: |
+| ![Menu Mobile](frontend/_assets/print_mobile_menu.png) | ![Tela Principal Mobile](frontend/_assets/print_mobile_tela_principal.png) | ![Detalhes Mobile](frontend/_assets/print_mobile_detalhes_do_credito.png) |
+
+---
 
 ## 🏗️ Arquitetura e Design
 
-O projeto segue uma arquitetura em camadas bem definida no backend e uma estrutura modular no frontend.
+O projeto segue os princípios de **Clean Code** e **SOLID**, com uma arquitetura em camadas bem definida:
 
-### Backend
 *   **Domain**: Entidades JPA (`Credito`) representando o modelo de dados.
-*   **Repository**: Interfaces (`CreditoRepository`) para acesso a dados.
-*   **Service**: Regras de negócio (`CreditoService`) e transformação de dados.
-*   **Controller**: Endpoints REST (`CreditoController`) para exposição da API.
-*   **DTO**: Objetos de transferência de dados (`CreditoResponse`) para desacoplar a API do modelo de persistência.
+*   **Repository**: Interfaces para persistência de dados.
+*   **Service**: Regras de negócio e transformação de DTOs.
+*   **Controller**: Endpoints REST.
+*   **DTO**: Objetos de transferência (`CreditoResponse`) para desacoplamento.
 
-### Frontend
-O frontend foi desenvolvido em Angular, consumindo a API REST do backend. A aplicação é totalmente responsiva e utiliza componentes do Angular Material para garantir consistência visual e usabilidade.
-
-## 🔌 API Endpoints e Documentação
-
-A API possui documentação interativa via Swagger UI.
-
-*   **Acesso à Documentação**: `http://localhost:8080/swagger-ui/index.html`
+### 🔌 API e Documentação
+A API é auto-documentada via Swagger UI.
+*   **Acesso**: `http://localhost:8080/swagger-ui/index.html`
 
 ![Documentação Swagger](_assets/print-api-docs.png)
 
-### Endpoints Principais
+---
 
-*   `GET /api/creditos`: Retorna uma lista paginada de todos os créditos.
-*   `GET /api/creditos/{numeroNfse}`: Retorna uma lista paginada de créditos associados a uma Nota Fiscal de Serviço Eletrônica (NFS-e).
-*   `GET /api/creditos/credito/{numeroCredito}`: Retorna os detalhes de um crédito específico.
-
-## 📱 Interface do Usuário (Frontend)
-
-A interface foi projetada para ser intuitiva e responsiva. Abaixo estão algumas capturas de tela demonstrando as funcionalidades implementadas.
-
-### Desktop
-| Tela Principal | Detalhes do Crédito |
-| :---: | :---: |
-| ![Tela Principal Desktop](frontend/_assets/print_desktop_tela_principal.png) | ![Detalhes Desktop](frontend/_assets/print_desktop_detalhes_do_item.png) |
-
-| Buscando Créditos |
-| :---: |
-| ![Buscando Desktop](frontend/_assets/print_desktop_buscando.png) |
-
-### Mobile
-| Menu Lateral | Tela Principal |
-| :---: | :---: |
-| ![Menu Mobile](frontend/_assets/print_mobile_menu.png) | ![Tela Principal Mobile](frontend/_assets/print_mobile_tela_principal.png) |
-
-| Buscando Créditos | Detalhes do Crédito |
-| :---: | :---: |
-| ![Buscando Mobile](frontend/_assets/print_mobile_buscando.png) | ![Detalhes Mobile](frontend/_assets/print_mobile_detalhes_do_credito.png) |
-
-## 🛠️ Como Executar
+## 🏃‍♂️ Como Executar
 
 ### Pré-requisitos
-
 *   Docker e Docker Compose instalados.
 
-### Passos
+### Passo a Passo
 
-1.  Clone o repositório.
-2.  Na raiz do projeto, copie o arquivo de exemplo de variáveis de ambiente:
-
+1.  **Clone o repositório.**
+2.  **Configure as variáveis de ambiente:**
     ```bash
     cp .env.example .env
     ```
+    *(O arquivo `.env` já vem com configurações padrão funcionais para desenvolvimento).*
 
-3.  Edite o arquivo `.env` recém-criado para ajustar as configurações conforme necessário (usuário, senha, tipo de banco, etc.). O arquivo já vem com valores padrão funcionais para um ambiente de desenvolvimento.
-
-    ```env
-    # Exemplo de configuração no .env
-    DB_TYPE=postgres
-    DB_VERSION=18.1
-    DB_USER=usuario
-    DB_PASSWORD=senha
-    DB_NAME=db_creditos
-    DB_PORT=5432
-    # ... outras configurações
-    ```
-
-4.  **Subir o Ambiente (Aplicação + Banco de Dados):**
-
-    Execute o comando abaixo para iniciar a aplicação (Backend e Frontend) e o banco de dados em containers:
-
+3.  **Suba o ambiente completo (Back + Front + Banco):**
     ```bash
     docker-compose up -d --build
     ```
 
-    *   **Backend API**: Disponível em `http://localhost:8080`
-    *   **Frontend**: Disponível em `http://localhost:4200` (ou a porta configurada no docker-compose para o frontend)
+4.  **Acesse a aplicação:**
+    *   🖥️ **Frontend**: [http://localhost:4200](http://localhost:4200)
+    *   ⚙️ **Backend API**: [http://localhost:8080](http://localhost:8080)
 
-    > **Nota:** O arquivo `application.yaml` da aplicação já está configurado para ler automaticamente as variáveis de ambiente definidas no container pelo Docker Compose.
-    >
-    > **Flyway:** Graças à integração com o Flyway, o banco de dados será criado e populado automaticamente com os dados iniciais assim que a aplicação iniciar.
+    > **Nota:** Graças ao **Flyway**, o banco de dados será criado e populado automaticamente na primeira execução.
 
-## 🧪 Testes
+---
 
-O projeto inclui testes automatizados para garantir a integridade das regras de negócio e da API.
+## 🧪 Testes Automatizados
 
-### Executando Testes
+O projeto inclui testes de integração e unidade no backend.
 
-Para rodar os testes automatizados de forma isolada, utilize o arquivo `docker-compose.test.yaml` criado especificamente para este fim:
-
+**Para rodar os testes de forma isolada (via Docker):**
 ```bash
 docker-compose -f docker-compose.test.yaml up --build --abort-on-container-exit
 ```
 
-Este comando irá:
-1. Subir um container de banco de dados exclusivo para testes.
-2. Construir e executar os testes da aplicação.
-3. Encerrar os containers automaticamente após a conclusão dos testes.
-
 ### Evidências de Testes
+| Teste Local (IDE) | Teste via Docker Compose |
+| :---: | :---: |
+| ![_assets/print-test-local.png](_assets/print-test-local.png) | ![_assets/print-test-on-docker-compose.png](_assets/print-test-on-docker-compose.png) |
 
-**Teste Local (IDE):**
-![Teste Local](_assets/print-test-local.png)
+---
 
-**Teste via Docker Compose:**
-![Teste Docker Compose](_assets/print-test-on-docker-compose.png)
+## 📋 Requisitos Originais do Desafio
+
+Para fins de conferência, abaixo estão os requisitos originais solicitados pela Infuse Tecnologia:
+
+*   **Tecnologias**: Java 8+, Spring Boot, Spring Data JPA, Hibernate, Angular.
+*   **Funcionalidades**:
+    *   [x] Consulta de créditos por número da NFS-e.
+    *   [x] Exibição detalhada de um crédito.
+    *   [x] Responsividade para dispositivos móveis.
+    *   [x] Aplicação containerizada.
+
+---
 
 ## 👨‍💻 Autor
 
-Desenvolvido por **Edson Moretti** como parte do processo seletivo da Infuse Tecnologia.
+Desenvolvido por **Edson Moretti**.
