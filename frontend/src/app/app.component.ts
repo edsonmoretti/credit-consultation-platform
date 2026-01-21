@@ -106,7 +106,7 @@ import { Credito } from './models/credito.model';
           </div>
 
           <footer class="absolute bottom-0 w-full p-8 text-center text-gray-500 text-sm border-t border-gray-200 bg-white z-10">
-            <p>&copy; {{ currentYear }} Plataforma de Consulta de Créditos. Todos os direitos reservados.</p>
+            <p>&copy; {{ currentYear }} Plataforma de Consulta de Créditos. Construído por Edson Moretti do Nascimento.</p>
           </footer>
         </mat-sidenav-content>
       </mat-sidenav-container>
@@ -123,7 +123,7 @@ export class AppComponent implements OnInit {
 
   creditos: Credito[] = [];
   totalElements = 0;
-  pageSize = 10;
+  pageSize = 5;
   pageIndex = 0;
   loading = false;
   currentSearchTerm = '';
