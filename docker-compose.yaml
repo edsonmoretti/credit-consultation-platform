@@ -42,3 +42,16 @@ services:
       SPRING_DATASOURCE_DRIVER: org.postgresql.Driver
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend_ccp
+    environment:
+      API_URL: http://backend:8080
+    restart: unless-stopped
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
