@@ -2,7 +2,20 @@
 
 Este projeto é uma solução para o **Desafio Técnico – Desenvolvimento de API de Consulta de Créditos** da **Infuse Tecnologia**.
 
-O objetivo é fornecer uma API REST robusta e escalável para consulta de créditos, implementada com **Java 25**, **Spring Boot 3** e seguindo as melhores práticas de desenvolvimento como **Clean Code** e **SOLID**.
+## 📋 Requisitos do Desafio
+O desafio solicitava originalmente o uso das seguintes tecnologias:
+*   **Back-end**: Java 8+, Spring Boot, Spring Data JPA, Hibernate.
+
+## 🌟 Diferenciais e Extras Implementados
+Além de atender aos requisitos obrigatórios, foram implementadas funcionalidades extras para enriquecer o projeto:
+
+*   **Documentação com Swagger/OpenAPI**: Implementação não solicitada, mas adicionada para facilitar o teste e visualização da API.
+*   **Endpoint de Listagem Geral**: Criação do endpoint `GET /api/creditos` para listar todos os registros de creditos.
+*   **Paginação Customizada**: Implementação de paginação otimizada (`PaginatedResponse`) nos endpoints de listagem para melhor apresentação e experiência no frontend.
+*   **Testes no Docker Compose**: Configuração completa de ambiente para facilitar a execução e testes.
+*   **Java 25**: Utilização da versão mais recente da linguagem (versão LTS).
+
+---
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -35,7 +48,7 @@ A entidade `Credito` foi modelada para atender aos requisitos do desafio, conten
 
 ## 🔌 API Endpoints e Documentação
 
-A API possui documentação via Swagger UI.
+A API possui documentação interativa via Swagger UI.
 
 *   **Acesso à Documentação**: `http://localhost:8080/swagger-ui/index.html`
 
@@ -107,7 +120,6 @@ Exemplo de estrutura de resposta paginada:
     ```
 
     A API estará disponível em `http://localhost:8080`.
-    ao acessar você deverá ser redirecionado para documentação da API (`http://localhost:8080/swagger-ui/index.html`)
 
     > **Nota:** O arquivo `application.yaml` da aplicação já está configurado para ler automaticamente as variáveis de ambiente definidas no container pelo Docker Compose.
 
