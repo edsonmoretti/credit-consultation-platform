@@ -4,11 +4,11 @@ import br.com.edsonmoretti.credit_consultation_platform.domain.Credito;
 import br.com.edsonmoretti.credit_consultation_platform.dto.CreditoResponse;
 import br.com.edsonmoretti.credit_consultation_platform.repository.CreditoRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -16,16 +16,14 @@ public class CreditoService {
 
     private final CreditoRepository creditoRepository;
 
-    public List<CreditoResponse> findAll() {
-        return creditoRepository.findAll().stream()
-                .map(this::toResponse)
-                .collect(Collectors.toList());
+    public Page<CreditoResponse> findAll(Pageable pageable) {
+        return creditoRepository.findAll(pageable)
+                .map(this::toResponse);
     }
 
-    public List<CreditoResponse> findByNumeroNfse(String numeroNfse) {
-        return creditoRepository.findByNumeroNfse(numeroNfse).stream()
-                .map(this::toResponse)
-                .collect(Collectors.toList());
+    public Page<CreditoResponse> findByNumeroNfse(String numeroNfse, Pageable pageable) {
+        return creditoRepository.findByNumeroNfse(numeroNfse, pageable)
+                .map(this::toResponse);
     }
 
     public Optional<CreditoResponse> findByNumeroCredito(String numeroCredito) {
