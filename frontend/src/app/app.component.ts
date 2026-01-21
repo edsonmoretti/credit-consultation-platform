@@ -174,52 +174,17 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    // Try searching by NFS-e first
+    // Search ONLY by NFS-e
     this.creditoService.getCreditosByNfse(this.currentSearchTerm, this.pageIndex, this.pageSize, this.currentSort).subscribe({
       next: (response) => {
-        if (response.content.length > 0 || response.totalElements > 0) {
-          this.creditos = response.content;
-          this.totalElements = response.totalElements;
-          this.loading = false;
-          this.cdr.detectChanges(); // Force change detection
-        } else {
-          // If no NFS-e found and we are on the first page, try searching by Credit Number
-          if (this.pageIndex === 0) {
-            this.searchByCreditNumber(this.currentSearchTerm);
-          } else {
-            this.loading = false;
-            this.totalElements = 0;
-            this.cdr.detectChanges();
-          }
-        }
-      },
-      error: () => {
-        // If error (e.g. 404), try Credit Number
-        if (this.pageIndex === 0) {
-          this.searchByCreditNumber(this.currentSearchTerm);
-        } else {
-          this.loading = false;
-          this.handleError('Erro na busca');
-        }
-      }
-    });
-  }
-
-  searchByCreditNumber(term: string) {
-    this.creditoService.getCreditoByNumero(term).subscribe({
-      next: (credito) => {
-        this.creditos = [credito];
-        this.totalElements = 1;
+        this.creditos = response.content;
+        this.totalElements = response.totalElements;
         this.loading = false;
         this.cdr.detectChanges(); // Force change detection
       },
       error: (err) => {
         this.loading = false;
-        if (err.status !== 404) {
-          this.handleError(err);
-        }
-        // If 404, just leave empty list
-        this.cdr.detectChanges();
+        this.handleError('Erro na busca');
       }
     });
   }
@@ -257,9 +222,26 @@ export class AppComponent implements OnInit {
   }
 
   openDetalhes(credito: Credito) {
-    this.dialog.open(DetalheCreditoComponent, {
-      width: '500px',
-      data: credito
+    // Fetch full details from API before opening modal
+    this.loading = true;
+    this.creditoService.getCreditoByNumero(credito.numeroCredito).subscribe({
+      next: (detalhesCredito) => {
+        this.loading = false;
+        this.dialog.open(DetalheCreditoComponent, {
+          width: '600px', // Increased width for better layout
+          maxWidth: '95vw',
+          data: detalhesCredito
+        });
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        this.loading = false;
+        this.snackBar.open('Erro ao carregar detalhes do crédito.', 'Fechar', {
+          duration: 5000,
+          panelClass: ['error-snackbar']
+        });
+        this.cdr.detectChanges();
+      }
     });
   }
 }

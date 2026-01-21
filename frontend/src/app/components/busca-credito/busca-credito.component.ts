@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
   template: `
     <form [formGroup]="buscaForm" (ngSubmit)="buscar()" class="flex flex-col md:flex-row gap-4 items-center p-4 bg-white rounded shadow-md">
       <mat-form-field appearance="outline" class="w-full md:w-1/2">
-        <mat-label>Número da NFS-e ou Crédito</mat-label>
+        <mat-label>Número da NFS-e</mat-label>
         <input matInput formControlName="termoBusca" placeholder="Ex: 20230001">
         @if (buscaForm.get('termoBusca')?.hasError('required')) {
           <mat-error>
