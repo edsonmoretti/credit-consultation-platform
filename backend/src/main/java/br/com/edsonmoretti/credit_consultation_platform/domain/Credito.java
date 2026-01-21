@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -24,10 +23,6 @@ public class Credito {
 
     private String numeroCredito;
     private String numeroNfse;
-    private BigDecimal valorCredito;
-    private BigDecimal valorUtilizado;
-    private BigDecimal valorDisponivel;
-    private LocalDateTime dataCarga;
     private LocalDate dataConstituicao;
     private BigDecimal valorIssqn;
     private String tipoCredito;
