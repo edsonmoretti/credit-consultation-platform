@@ -132,4 +132,4 @@ Para fins de conferência, abaixo estão os requisitos originais solicitados pel
 
 ## 👨‍💻 Autor
 
-Desenvolvido por **Edson Moretti**.
+Desenvolvido por **Edson Moretti do Nascimento**.
