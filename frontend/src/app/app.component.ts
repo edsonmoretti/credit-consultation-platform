@@ -76,40 +76,42 @@ import { Credito } from './models/credito.model';
         </mat-sidenav>
 
         <!-- Main Content -->
-        <mat-sidenav-content class="bg-gray-100">
-          <main class="p-4 md:p-8 max-w-7xl mx-auto flex flex-col gap-6">
+        <mat-sidenav-content class="bg-gray-100 flex flex-col !overflow-hidden relative">
+          <div class="flex-auto overflow-y-auto h-full pb-20">
+            <main class="p-4 md:p-8 max-w-7xl mx-auto flex flex-col gap-6">
 
-            <!-- Header Section -->
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
-              <div>
-                <h1 class="text-2xl font-bold text-gray-800">Consulta de Créditos</h1>
-                <p class="text-gray-500">Gerencie e visualize seus créditos de NFS-e</p>
+              <!-- Header Section -->
+              <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
+                <div>
+                  <h1 class="text-2xl font-bold text-gray-800">Consulta de Créditos</h1>
+                  <p class="text-gray-500">Gerencie e visualize seus créditos de NFS-e</p>
+                </div>
+                <div class="flex gap-2">
+                  <button mat-stroked-button color="primary">
+                    <mat-icon>file_download</mat-icon> Exportar
+                  </button>
+                </div>
               </div>
-              <div class="flex gap-2">
-                <button mat-stroked-button color="primary">
-                  <mat-icon>file_download</mat-icon> Exportar
-                </button>
-              </div>
-            </div>
 
-            <!-- Search Component -->
-            <app-busca-credito (buscaRealizada)="onBusca($event)"></app-busca-credito>
+              <!-- Search Component -->
+              <app-busca-credito (buscaRealizada)="onBusca($event)"></app-busca-credito>
 
-            <!-- Results Table -->
-            <app-lista-creditos
-              [creditos]="creditos"
-              [totalElements]="totalElements"
-              [pageSize]="pageSize"
-              [pageIndex]="pageIndex"
-              [loading]="loading"
-              (pageChange)="onPageChange($event)"
-              (sortChange)="onSortChange($event)"
-              (detalheClick)="openDetalhes($event)">
-            </app-lista-creditos>
-          </main>
+              <!-- Results Table -->
+              <app-lista-creditos
+                [creditos]="creditos"
+                [totalElements]="totalElements"
+                [pageSize]="pageSize"
+                [pageIndex]="pageIndex"
+                [loading]="loading"
+                (pageChange)="onPageChange($event)"
+                (sortChange)="onSortChange($event)"
+                (detalheClick)="openDetalhes($event)">
+              </app-lista-creditos>
+            </main>
+          </div>
 
-          <footer class="p-6 text-center text-gray-500 text-sm border-t border-gray-200 mt-8">
-            <p>&copy; 2026 Plataforma de Consulta de Créditos. Todos os direitos reservados.</p>
+          <footer class="absolute bottom-0 w-full p-8 text-center text-gray-500 text-sm border-t border-gray-200 bg-white z-10">
+            <p>&copy; {{ currentYear }} Plataforma de Consulta de Créditos. Todos os direitos reservados.</p>
           </footer>
         </mat-sidenav-content>
       </mat-sidenav-container>
@@ -131,6 +133,7 @@ export class AppComponent implements OnInit {
   loading = false;
   currentSearchTerm = '';
   currentSort: string[] = [];
+  currentYear = new Date().getFullYear();
 
   isHandset$: Observable<boolean>;
 
