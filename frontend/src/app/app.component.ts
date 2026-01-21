@@ -86,11 +86,6 @@ import { Credito } from './models/credito.model';
                   <h1 class="text-2xl font-bold text-gray-800">Consulta de Créditos</h1>
                   <p class="text-gray-500">Gerencie e visualize seus créditos de NFS-e</p>
                 </div>
-                <div class="flex gap-2">
-                  <button mat-stroked-button color="primary">
-                    <mat-icon>file_download</mat-icon> Exportar
-                  </button>
-                </div>
               </div>
 
               <!-- Search Component -->
