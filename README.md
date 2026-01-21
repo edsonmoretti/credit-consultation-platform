@@ -5,10 +5,17 @@ Este projeto é uma solução para o **Desafio Técnico – Desenvolvimento de A
 ## 📋 Requisitos do Desafio
 O desafio solicitava originalmente o uso das seguintes tecnologias:
 *   **Back-end**: Java 8+, Spring Boot, Spring Data JPA, Hibernate.
+*   **Front-end**: Angular.
+*   **Funcionalidades**:
+    *   Consulta de créditos por número da NFS-e.
+    *   Exibição detalhada de um crédito ao ser selecionado.
+    *   Responsividade para dispositivos móveis.
+    *   Aplicação containerizada.
 
 ## 🌟 Diferenciais e Extras Implementados
 Além de atender aos requisitos obrigatórios, foram implementadas funcionalidades extras para enriquecer o projeto e demonstrar conhecimentos avançados:
 
+### Backend
 *   **Flyway Migration**: Gerenciamento automatizado de versões do banco de dados. As tabelas e dados iniciais são criados automaticamente ao iniciar a aplicação, eliminando a necessidade de scripts manuais.
 *   **Documentação com Swagger/OpenAPI**: Implementação não solicitada, mas adicionada para facilitar o teste e visualização da API.
 *   **Endpoint de Listagem Geral**: Criação do endpoint `GET /api/creditos` para listar todos os registros, funcionalidade não prevista originalmente.
@@ -16,37 +23,44 @@ Além de atender aos requisitos obrigatórios, foram implementadas funcionalidad
 *   **Docker & Docker Compose**: Configuração completa de ambiente para facilitar a execução e testes.
 *   **Java 25**: Utilização da versão mais recente da linguagem.
 
+### Frontend
+*   **Menu Lateral**: Interface moderna com menu lateral para melhor navegação.
+*   **Modal de Detalhes**: Exibição dos detalhes do crédito em um modal elegante, melhorando a usabilidade.
+*   **Paginação e Ordenação**: Implementação completa de paginação e ordenação nas tabelas de consulta.
+*   **Design Responsivo Aprimorado**: Layout adaptável que garante uma excelente experiência tanto em desktops quanto em dispositivos móveis.
+
 ---
 
 ## 🚀 Tecnologias Utilizadas
 
+### Backend
 *   **Java 25**: Versão mais recente da linguagem.
 *   **Spring Boot 3.5.9**: Framework para desenvolvimento ágil.
 *   **Spring Data JPA**: Abstração para persistência de dados.
 *   **Flyway**: Migração e versionamento de banco de dados.
 *   **Lombok**: Redução de boilerplate code.
 *   **PostgreSQL**: Banco de dados relacional (configurável via Docker).
-*   **Docker & Docker Compose**: Containerização da aplicação e banco de dados.
 *   **Swagger / OpenAPI**: Documentação interativa da API.
+
+### Frontend
+*   **Angular 21**: Framework moderno para construção de interfaces.
+*   **Angular Material**: Componentes de UI de alta qualidade.
+*   **Tailwind CSS**: Framework CSS utilitário para estilização rápida e responsiva.
+*   **TypeScript**: Superset tipado de JavaScript.
 
 ## 🏗️ Arquitetura e Design
 
-O projeto segue uma arquitetura em camadas bem definida:
+O projeto segue uma arquitetura em camadas bem definida no backend e uma estrutura modular no frontend.
 
+### Backend
 *   **Domain**: Entidades JPA (`Credito`) representando o modelo de dados.
 *   **Repository**: Interfaces (`CreditoRepository`) para acesso a dados.
 *   **Service**: Regras de negócio (`CreditoService`) e transformação de dados.
 *   **Controller**: Endpoints REST (`CreditoController`) para exposição da API.
 *   **DTO**: Objetos de transferência de dados (`CreditoResponse`) para desacoplar a API do modelo de persistência.
 
-### Modelo de Dados (Entidade `Credito`)
-
-A entidade `Credito` foi modelada para atender aos requisitos do desafio, contendo campos como:
-*   `numeroCredito`, `numeroNfse`
-*   `valorCredito`, `valorUtilizado`, `valorDisponivel`
-*   `dataCarga`, `dataConstituicao`
-*   `valorIssqn`, `tipoCredito`, `simplesNacional`
-*   `aliquota`, `valorFaturado`, `valorDeducao`, `baseCalculo`
+### Frontend
+O frontend foi desenvolvido em Angular, consumindo a API REST do backend. A aplicação é totalmente responsiva e utiliza componentes do Angular Material para garantir consistência visual e usabilidade.
 
 ## 🔌 API Endpoints e Documentação
 
@@ -54,7 +68,7 @@ A API possui documentação interativa via Swagger UI.
 
 *   **Acesso à Documentação**: `http://localhost:8080/swagger-ui/index.html`
 
-![Documentação Swagger](backend/_assets/print-api-docs.png)
+![Documentação Swagger](_assets/print-api-docs.png)
 
 ### Endpoints Principais
 
@@ -62,30 +76,27 @@ A API possui documentação interativa via Swagger UI.
 *   `GET /api/creditos/{numeroNfse}`: Retorna uma lista paginada de créditos associados a uma Nota Fiscal de Serviço Eletrônica (NFS-e).
 *   `GET /api/creditos/credito/{numeroCredito}`: Retorna os detalhes de um crédito específico.
 
-### Paginação
+## 📱 Interface do Usuário (Frontend)
 
-Os endpoints de listagem utilizam uma estrutura de resposta paginada simplificada (`PaginatedResponse`) para facilitar a integração com o frontend e evitar poluição de dados desnecessários.
+A interface foi projetada para ser intuitiva e responsiva. Abaixo estão algumas capturas de tela demonstrando as funcionalidades implementadas.
 
-Exemplo de estrutura de resposta paginada:
+### Desktop
+| Tela Principal | Detalhes do Crédito |
+| :---: | :---: |
+| ![Tela Principal Desktop](frontend/_assets/print_desktop_tela_principal.png) | ![Detalhes Desktop](frontend/_assets/print_desktop_detalhes_do_item.png) |
 
-```json
-{
-  "content": [ ... ],
-  "pageable": {
-    "pageNumber": 0,
-    "pageSize": 10,
-    "offset": 0
-  },
-  "totalPages": 1,
-  "totalElements": 5,
-  "size": 10,
-  "number": 0,
-  "first": true,
-  "last": true,
-  "numberOfElements": 5,
-  "empty": false
-}
-```
+| Buscando Créditos |
+| :---: |
+| ![Buscando Desktop](frontend/_assets/print_desktop_buscando.png) |
+
+### Mobile
+| Menu Lateral | Tela Principal |
+| :---: | :---: |
+| ![Menu Mobile](frontend/_assets/print_mobile_menu.png) | ![Tela Principal Mobile](frontend/_assets/print_mobile_tela_principal.png) |
+
+| Buscando Créditos | Detalhes do Crédito |
+| :---: | :---: |
+| ![Buscando Mobile](frontend/_assets/print_mobile_buscando.png) | ![Detalhes Mobile](frontend/_assets/print_mobile_detalhes_do_credito.png) |
 
 ## 🛠️ Como Executar
 
@@ -117,13 +128,14 @@ Exemplo de estrutura de resposta paginada:
 
 4.  **Subir o Ambiente (Aplicação + Banco de Dados):**
 
-    Execute o comando abaixo para iniciar a aplicação e o banco de dados em containers:
+    Execute o comando abaixo para iniciar a aplicação (Backend e Frontend) e o banco de dados em containers:
 
     ```bash
     docker-compose up -d --build
     ```
 
-    A API estará disponível em `http://localhost:8080`.
+    *   **Backend API**: Disponível em `http://localhost:8080`
+    *   **Frontend**: Disponível em `http://localhost:4200` (ou a porta configurada no docker-compose para o frontend)
 
     > **Nota:** O arquivo `application.yaml` da aplicação já está configurado para ler automaticamente as variáveis de ambiente definidas no container pelo Docker Compose.
     >
@@ -149,10 +161,10 @@ Este comando irá:
 ### Evidências de Testes
 
 **Teste Local (IDE):**
-![Teste Local](backend/_assets/print-test-local.png)
+![Teste Local](_assets/print-test-local.png)
 
 **Teste via Docker Compose:**
-![Teste Docker Compose](backend/_assets/print-test-on-docker-compose.png)
+![Teste Docker Compose](_assets/print-test-on-docker-compose.png)
 
 ## 👨‍💻 Autor
 
