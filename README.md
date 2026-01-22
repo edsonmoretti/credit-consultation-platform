@@ -19,6 +19,7 @@ Este projeto vai além dos requisitos básicos do desafio, implementando prátic
 *   **Paginação Customizada**: Implementação de paginação otimizada (`PaginatedResponse`) nos endpoints de listagem para melhor performance e experiência no frontend.
 *   **Testes do Backend via Docker & Docker Compose**: Pronto para rodar os testes sem precisar ter todo JDK em ambiente local.
 *   **Java 25**: Utilização da versão mais recente da linguagem (LTS).
+*   **Kafka Producer**: Integração com Apache Kafka para envio de eventos de consulta de crédito, simulando um cenário de auditoria ou processamento assíncrono.
 
 ### Frontend
 *   **Menu Lateral**: Interface moderna com menu lateral para melhor navegação.
@@ -36,7 +37,7 @@ Este projeto vai além dos requisitos básicos do desafio, implementando prátic
 | 🍃 **Spring Boot 3.5.9** | 🎨 **Angular Material**      | 🐙 **Docker Compose** |
 | 🗄️ **Spring Data JPA** | 💅 **Tailwind CSS**          | 🐘 **PostgreSQL** |
 | 🚀 **Flyway** | 🟦 **TypeScript**            | ☁️ **Swagger UI** |
-| 🌶️ **Lombok** |                              | |
+| 🌶️ **Lombok** |                              | 📨 **Apache Kafka** |
 
 ---
 
@@ -72,6 +73,12 @@ A API é auto-documentada via Swagger UI.
 
 ![Documentação Swagger](backend/_assets/print-api-docs.png)
 
+### 📨 Mensageria com Kafka
+O sistema utiliza Kafka para notificar consultas realizadas.
+*   **Kafka UI**: `http://localhost:8090`
+
+![Kafka UI](backend/_assets/kafka-ui.png)
+
 ---
 
 ## 🏃‍♂️ Como Executar
@@ -88,7 +95,7 @@ A API é auto-documentada via Swagger UI.
     ```
     *(O arquivo `.env` já vem com configurações padrão funcionais para desenvolvimento).*
 
-3.  **Suba o ambiente completo (Back + Front + Banco):**
+3.  **Suba o ambiente completo (Back + Front + Banco + Kafka):**
     ```bash
     docker-compose up -d --build
     ```
@@ -97,6 +104,7 @@ A API é auto-documentada via Swagger UI.
 4.  **Acesse a aplicação:**
     *   🖥️ **Frontend**: [http://localhost:4200](http://localhost:4200)
     *   ⚙️ **Backend API**: [http://localhost:8080](http://localhost:8080)
+    *   📨 **Kafka UI**: [http://localhost:8090](http://localhost:8090)
 
     > **Nota:** Graças ao **Flyway**, o banco de dados será criado e populado automaticamente na primeira execução.
 

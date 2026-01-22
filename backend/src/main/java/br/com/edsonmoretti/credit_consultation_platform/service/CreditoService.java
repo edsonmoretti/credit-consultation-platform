@@ -2,6 +2,7 @@ package br.com.edsonmoretti.credit_consultation_platform.service;
 
 import br.com.edsonmoretti.credit_consultation_platform.domain.Credito;
 import br.com.edsonmoretti.credit_consultation_platform.dto.CreditoResponse;
+import br.com.edsonmoretti.credit_consultation_platform.kafka.CreditoConsultaProducer;
 import br.com.edsonmoretti.credit_consultation_platform.repository.CreditoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import java.util.Optional;
 public class CreditoService {
 
     private final CreditoRepository creditoRepository;
+    private final CreditoConsultaProducer creditoConsultaProducer;
 
     public Page<CreditoResponse> findAll(Pageable pageable) {
         return creditoRepository.findAll(pageable)
@@ -22,13 +24,17 @@ public class CreditoService {
     }
 
     public Page<CreditoResponse> findByNumeroNfse(String numeroNfse, Pageable pageable) {
-        return creditoRepository.findByNumeroNfse(numeroNfse, pageable)
+        Page<CreditoResponse> creditos = creditoRepository.findByNumeroNfse(numeroNfse, pageable)
                 .map(this::toResponse);
+        creditos.forEach(creditoConsultaProducer::enviarConsulta);
+        return creditos;
     }
 
     public Optional<CreditoResponse> findByNumeroCredito(String numeroCredito) {
-        return creditoRepository.findByNumeroCredito(numeroCredito)
+        Optional<CreditoResponse> credito = creditoRepository.findByNumeroCredito(numeroCredito)
                 .map(this::toResponse);
+        credito.ifPresent(creditoConsultaProducer::enviarConsulta);
+        return credito;
     }
 
     private CreditoResponse toResponse(Credito credito) {

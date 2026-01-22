@@ -14,7 +14,7 @@ RUN npm ci
 COPY . .
 
 # Build de produção
-RUN npm run build -- --configuration=production
+RUN npm run build --configuration=production
 
 
 # ---------- STAGE 2: Runtime ----------

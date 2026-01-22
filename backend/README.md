@@ -10,6 +10,7 @@ Este diretório contém o código-fonte do serviço de backend da aplicação, d
 *   **Flyway**: Migração e versionamento de banco de dados.
 *   **Lombok**: Redução de boilerplate code.
 *   **PostgreSQL**: Banco de dados relacional.
+*   **Apache Kafka**: Plataforma de streaming de eventos.
 *   **Swagger / OpenAPI**: Documentação interativa da API.
 *   **JUnit 5 & Mockito**: Testes unitários e de integração.
 
@@ -22,6 +23,7 @@ O projeto segue os princípios de **Clean Code** e **SOLID**:
 *   **Service**: Regras de negócio.
 *   **Controller**: Endpoints REST.
 *   **DTO**: Objetos de transferência (`CreditoResponse`, `PaginatedResponse`).
+*   **Kafka**: Producer para notificação de eventos.
 
 ### Destaques da Implementação
 
@@ -32,7 +34,10 @@ O projeto segue os princípios de **Clean Code** e **SOLID**:
 2.  **Paginação Customizada**:
     *   Implementação de `PaginatedResponse` para simplificar o JSON de resposta do Spring Data, facilitando o consumo pelo frontend.
 
-3.  **Documentação Automática**:
+3.  **Integração com Kafka**:
+    *   Um `CreditoConsultaProducer` envia uma mensagem para o tópico `credito-consultas` sempre que uma consulta é realizada, simulando um log de auditoria.
+
+4.  **Documentação Automática**:
     *   Swagger UI disponível em `/swagger-ui/index.html`.
 
 ## 🔌 API Endpoints
@@ -43,11 +48,17 @@ O projeto segue os princípios de **Clean Code** e **SOLID**:
 
 ![Documentação Swagger](../_assets/print-api-docs.png)
 
+### 📨 Mensageria com Kafka
+O sistema utiliza Kafka para notificar consultas realizadas.
+*   **Kafka UI**: `http://localhost:8090`
+
+![Kafka UI](_assets/kafka-ui.png)
+
 ## 🛠️ Como Executar (Localmente)
 
 ### Pré-requisitos
 *   JDK 25 instalado.
-*   Banco de dados PostgreSQL rodando (ou configurado via Docker).
+*   Banco de dados PostgreSQL e Kafka rodando (ou configurado via Docker).
 
 ### Passos
 1.  Configure as variáveis de ambiente no `application.yaml` ou via variáveis de sistema (veja `.env.example` na raiz).
