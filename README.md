@@ -19,6 +19,7 @@ Este projeto vai além dos requisitos básicos do desafio, implementando prátic
 *   **Paginação Customizada**: Implementação de paginação otimizada (`PaginatedResponse`) nos endpoints de listagem para melhor performance e experiência no frontend.
 *   **Testes do Backend via Docker & Docker Compose**: Pronto para rodar os testes sem precisar ter todo JDK em ambiente local.
 *   **Java 25**: Utilização da versão mais recente da linguagem (LTS).
+*   **Kafka Producer**: Integração com Apache Kafka para envio de eventos de consulta de crédito, simulando um cenário de auditoria ou processamento assíncrono.
 
 ### Frontend
 *   **Menu Lateral**: Interface moderna com menu lateral para melhor navegação.
@@ -36,7 +37,7 @@ Este projeto vai além dos requisitos básicos do desafio, implementando prátic
 | 🍃 **Spring Boot 3.5.9** | 🎨 **Angular Material**      | 🐙 **Docker Compose** |
 | 🗄️ **Spring Data JPA** | 💅 **Tailwind CSS**          | 🐘 **PostgreSQL** |
 | 🚀 **Flyway** | 🟦 **TypeScript**            | ☁️ **Swagger UI** |
-| 🌶️ **Lombok** |                              | |
+| 🌶️ **Lombok** |                              | 📨 **Apache Kafka** |
 
 ---
 
@@ -88,7 +89,7 @@ A API é auto-documentada via Swagger UI.
     ```
     *(O arquivo `.env` já vem com configurações padrão funcionais para desenvolvimento).*
 
-3.  **Suba o ambiente completo (Back + Front + Banco):**
+3.  **Suba o ambiente completo (Back + Front + Banco + Kafka):**
     ```bash
     docker-compose up -d --build
     ```
