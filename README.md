@@ -57,7 +57,7 @@ A interface foi projetada para ser intuitiva e responsiva.
 
 ---
 
-## 🏗️ Arquitetura e Design
+## 🏛️️ Arquitetura e Design
 
 O projeto segue os princípios de **Clean Code** e **SOLID**, com uma arquitetura em camadas bem definida:
 
@@ -124,18 +124,6 @@ docker-compose -f docker-compose.test.yaml up --build --abort-on-container-exit
 |:---------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|
 | ![_assets/print-test-local.png](backend/_assets/print-test-local.png) | ![backend/_assets/print-test-on-docker-compose.png](backend/_assets/print-test-on-docker-compose.png) |
 
----
-
-## 📋 Requisitos Originais do Desafio
-
-Para fins de conferência, abaixo estão os requisitos originais solicitados pela Infuse Tecnologia:
-
-*   **Tecnologias**: Java 8+, Spring Boot, Spring Data JPA, Hibernate, Angular.
-*   **Funcionalidades**:
-    *   [x] Consulta de créditos Constituídos por número da NFS-e.
-    *   [x] Exibição detalhada de um crédito.
-    *   [x] Responsividade para dispositivos móveis.
-    *   [x] Aplicação containerizada.
 
 ---
 
