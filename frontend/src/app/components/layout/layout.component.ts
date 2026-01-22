@@ -56,6 +56,10 @@ import { map, shareReplay } from 'rxjs/operators';
               <mat-icon matListItemIcon>receipt_long</mat-icon>
               <span matListItemTitle class="font-medium">Consulta de Créditos</span>
             </a>
+            <a mat-list-item href="http://localhost:8080/swagger-ui/index.html" target="_blank" class="text-gray-600 hover:bg-gray-50">
+              <mat-icon matListItemIcon class="text-gray-400">api</mat-icon>
+              <span matListItemTitle>API Docs (Swagger)</span>
+            </a>
             <a mat-list-item routerLink="/sobre" routerLinkActive="!text-indigo-600 !bg-indigo-50 border-r-4 border-indigo-600" class="text-gray-600 hover:bg-gray-50">
               <mat-icon matListItemIcon class="text-gray-400">help</mat-icon>
               <span matListItemTitle>Sobre</span>
