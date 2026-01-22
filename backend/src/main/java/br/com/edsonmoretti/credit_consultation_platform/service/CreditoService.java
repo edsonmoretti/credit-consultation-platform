@@ -2,7 +2,7 @@ package br.com.edsonmoretti.credit_consultation_platform.service;
 
 import br.com.edsonmoretti.credit_consultation_platform.domain.Credito;
 import br.com.edsonmoretti.credit_consultation_platform.dto.CreditoResponse;
-import br.com.edsonmoretti.credit_consultation_platform.kafka.CreditoConsultaProducer;
+import br.com.edsonmoretti.credit_consultation_platform.application.port.out.CreditoConsultaPublisher;
 import br.com.edsonmoretti.credit_consultation_platform.repository.CreditoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class CreditoService {
 
     private final CreditoRepository creditoRepository;
-    private final CreditoConsultaProducer creditoConsultaProducer;
+    private final CreditoConsultaPublisher creditoConsultaPublisher;
 
     public Page<CreditoResponse> findAll(Pageable pageable) {
         return creditoRepository.findAll(pageable)
@@ -26,14 +26,14 @@ public class CreditoService {
     public Page<CreditoResponse> findByNumeroNfse(String numeroNfse, Pageable pageable) {
         Page<CreditoResponse> creditos = creditoRepository.findByNumeroNfse(numeroNfse, pageable)
                 .map(this::toResponse);
-        creditos.forEach(creditoConsultaProducer::enviarConsulta);
+        creditos.forEach(creditoConsultaPublisher::publish);
         return creditos;
     }
 
     public Optional<CreditoResponse> findByNumeroCredito(String numeroCredito) {
         Optional<CreditoResponse> credito = creditoRepository.findByNumeroCredito(numeroCredito)
                 .map(this::toResponse);
-        credito.ifPresent(creditoConsultaProducer::enviarConsulta);
+        credito.ifPresent(creditoConsultaPublisher::publish);
         return credito;
     }
 
