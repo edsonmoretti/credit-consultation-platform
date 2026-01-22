@@ -2,15 +2,13 @@
 
 > **Solução para o Desafio Técnico – Infuse Tecnologia**
 
-Uma aplicação Fullstack robusta, moderna e containerizada para consulta e gestão de créditos, desenvolvida com **Java 25**, **Spring Boot 3** e **Angular 21**.
+Uma aplicação Fullstack containerizada para consulta e gestão de créditos constituídos, desenvolvida com **Java 25**, **Spring Boot 3** e **Angular 21**.
 
 ![Visão Geral do Sistema](frontend/_assets/print_desktop_tela_principal.png)
 
 ---
 
 ## 🌟 Diferenciais e Extras Implementados
-
-Este projeto vai além dos requisitos básicos do desafio, implementando práticas de mercado e tecnologias de ponta para entregar uma experiência superior de desenvolvimento e uso.
 
 ### Backend
 *   **Flyway Migration**: Gerenciamento automatizado de versões do banco de dados. As tabelas e dados iniciais são criados automaticamente ao iniciar a aplicação, eliminando a necessidade de scripts manuais.
@@ -43,7 +41,7 @@ Este projeto vai além dos requisitos básicos do desafio, implementando prátic
 
 ## 📱 Galeria da Interface
 
-A interface foi projetada para ser intuitiva e responsiva.
+A interface foi projetada para ser intuitiva e responsiva com ajuda de IA.
 
 ### Desktop
 | Detalhes em Modal | Busca Filtrada |
@@ -57,9 +55,7 @@ A interface foi projetada para ser intuitiva e responsiva.
 
 ---
 
-## 🏛️️ Arquitetura e Design
-
-O projeto segue os princípios de **Clean Code** e **SOLID**, com uma arquitetura em camadas bem definida:
+## 🏛️️ Arquitetura e Design (backend)
 
 *   **Domain**: Entidades JPA (`Credito`) representando o modelo de dados.
 *   **Repository**: Interfaces para persistência de dados.
