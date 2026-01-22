@@ -48,6 +48,12 @@ O projeto segue os princípios de **Clean Code** e **SOLID**:
 
 ![Documentação Swagger](../_assets/print-api-docs.png)
 
+### 📨 Mensageria com Kafka
+O sistema utiliza Kafka para notificar consultas realizadas.
+*   **Kafka UI**: `http://localhost:8090`
+
+![Kafka UI](_assets/kafka-ui.png)
+
 ## 🛠️ Como Executar (Localmente)
 
 ### Pré-requisitos

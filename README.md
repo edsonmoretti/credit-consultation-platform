@@ -73,6 +73,12 @@ A API é auto-documentada via Swagger UI.
 
 ![Documentação Swagger](backend/_assets/print-api-docs.png)
 
+### 📨 Mensageria com Kafka
+O sistema utiliza Kafka para notificar consultas realizadas.
+*   **Kafka UI**: `http://localhost:8090`
+
+![Kafka UI](backend/_assets/kafka-ui.png)
+
 ---
 
 ## 🏃‍♂️ Como Executar
@@ -98,6 +104,7 @@ A API é auto-documentada via Swagger UI.
 4.  **Acesse a aplicação:**
     *   🖥️ **Frontend**: [http://localhost:4200](http://localhost:4200)
     *   ⚙️ **Backend API**: [http://localhost:8080](http://localhost:8080)
+    *   📨 **Kafka UI**: [http://localhost:8090](http://localhost:8090)
 
     > **Nota:** Graças ao **Flyway**, o banco de dados será criado e populado automaticamente na primeira execução.
 
