@@ -70,7 +70,7 @@ O projeto segue os princípios de **Clean Code** e **SOLID**, com uma arquitetur
 A API é auto-documentada via Swagger UI.
 *   **Acesso**: `http://localhost:8080/swagger-ui/index.html`
 
-![Documentação Swagger](_assets/print-api-docs.png)
+![Documentação Swagger](backend/_assets/print-api-docs.png)
 
 ---
 
@@ -92,6 +92,7 @@ A API é auto-documentada via Swagger UI.
     ```bash
     docker-compose up -d --build
     ```
+    ![img.png](docker-running.png)
 
 4.  **Acesse a aplicação:**
     *   🖥️ **Frontend**: [http://localhost:4200](http://localhost:4200)
@@ -111,9 +112,9 @@ docker-compose -f docker-compose.test.yaml up --build --abort-on-container-exit
 ```
 
 ### Evidências de Testes
-| Teste Local (IDE) | Teste via Docker Compose |
-| :---: | :---: |
-| ![_assets/print-test-local.png](_assets/print-test-local.png) | ![_assets/print-test-on-docker-compose.png](_assets/print-test-on-docker-compose.png) |
+|                           Teste Local (IDE)                           |                                       Teste via Docker Compose                                        |
+|:---------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|
+| ![_assets/print-test-local.png](backend/_assets/print-test-local.png) | ![backend/_assets/print-test-on-docker-compose.png](backend/_assets/print-test-on-docker-compose.png) |
 
 ---
 
