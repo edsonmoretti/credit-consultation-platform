@@ -42,29 +42,29 @@ import { MatExpansionModule } from '@angular/material/expansion';
               <h3 class="font-bold text-lg text-indigo-700 mb-3 flex items-center gap-2">
                 <mat-icon>code</mat-icon> Backend
               </h3>
-              <ul class="space-y-2 text-sm text-gray-700">
-                <li class="flex items-start gap-2">
-                  <mat-icon class="text-green-600 text-base mt-0.5">check_circle</mat-icon>
+              <ul class="space-y-3 text-sm text-gray-700">
+                <li class="flex items-start gap-3">
+                  <mat-icon class="text-green-600 !text-xl mt-0.5 flex-shrink-0">check_circle</mat-icon>
                   <span><strong>Flyway Migration:</strong> Gerenciamento automatizado de versões do banco. Tabelas e dados criados automaticamente.</span>
                 </li>
-                <li class="flex items-start gap-2">
-                  <mat-icon class="text-green-600 text-base mt-0.5">check_circle</mat-icon>
+                <li class="flex items-start gap-3">
+                  <mat-icon class="text-green-600 !text-xl mt-0.5 flex-shrink-0">check_circle</mat-icon>
                   <span><strong>Swagger/OpenAPI:</strong> Documentação interativa não solicitada, mas implementada para facilitar integração.</span>
                 </li>
-                <li class="flex items-start gap-2">
-                  <mat-icon class="text-green-600 text-base mt-0.5">check_circle</mat-icon>
+                <li class="flex items-start gap-3">
+                  <mat-icon class="text-green-600 !text-xl mt-0.5 flex-shrink-0">check_circle</mat-icon>
                   <span><strong>Endpoint de Listagem Geral:</strong> GET /api/creditos para listar todos os registros.</span>
                 </li>
-                <li class="flex items-start gap-2">
-                  <mat-icon class="text-green-600 text-base mt-0.5">check_circle</mat-icon>
+                <li class="flex items-start gap-3">
+                  <mat-icon class="text-green-600 !text-xl mt-0.5 flex-shrink-0">check_circle</mat-icon>
                   <span><strong>Paginação Customizada:</strong> Implementação otimizada para melhor performance.</span>
                 </li>
-                <li class="flex items-start gap-2">
-                  <mat-icon class="text-green-600 text-base mt-0.5">check_circle</mat-icon>
+                <li class="flex items-start gap-3">
+                  <mat-icon class="text-green-600 !text-xl mt-0.5 flex-shrink-0">check_circle</mat-icon>
                   <span><strong>Testes via Docker:</strong> Execução de testes sem necessidade de JDK local.</span>
                 </li>
-                <li class="flex items-start gap-2">
-                  <mat-icon class="text-green-600 text-base mt-0.5">check_circle</mat-icon>
+                <li class="flex items-start gap-3">
+                  <mat-icon class="text-green-600 !text-xl mt-0.5 flex-shrink-0">check_circle</mat-icon>
                   <span><strong>Java 25:</strong> Versão mais recente da linguagem (LTS).</span>
                 </li>
               </ul>
@@ -75,29 +75,29 @@ import { MatExpansionModule } from '@angular/material/expansion';
               <h3 class="font-bold text-lg text-pink-700 mb-3 flex items-center gap-2">
                 <mat-icon>web</mat-icon> Frontend
               </h3>
-              <ul class="space-y-2 text-sm text-gray-700">
-                <li class="flex items-start gap-2">
-                  <mat-icon class="text-purple-600 text-base mt-0.5">star</mat-icon>
+              <ul class="space-y-3 text-sm text-gray-700">
+                <li class="flex items-start gap-3">
+                  <mat-icon class="text-purple-600 !text-xl mt-0.5 flex-shrink-0">star</mat-icon>
                   <span><strong>Menu Lateral:</strong> Interface moderna com navegação intuitiva.</span>
                 </li>
-                <li class="flex items-start gap-2">
-                  <mat-icon class="text-purple-600 text-base mt-0.5">star</mat-icon>
+                <li class="flex items-start gap-3">
+                  <mat-icon class="text-purple-600 !text-xl mt-0.5 flex-shrink-0">star</mat-icon>
                   <span><strong>Modal de Detalhes:</strong> Exibição elegante dos detalhes do crédito.</span>
                 </li>
-                <li class="flex items-start gap-2">
-                  <mat-icon class="text-purple-600 text-base mt-0.5">star</mat-icon>
+                <li class="flex items-start gap-3">
+                  <mat-icon class="text-purple-600 !text-xl mt-0.5 flex-shrink-0">star</mat-icon>
                   <span><strong>Paginação e Ordenação:</strong> Implementação completa nas tabelas de consulta.</span>
                 </li>
-                <li class="flex items-start gap-2">
-                  <mat-icon class="text-purple-600 text-base mt-0.5">star</mat-icon>
+                <li class="flex items-start gap-3">
+                  <mat-icon class="text-purple-600 !text-xl mt-0.5 flex-shrink-0">star</mat-icon>
                   <span><strong>Design Responsivo:</strong> Excelente experiência em desktop e mobile.</span>
                 </li>
-                <li class="flex items-start gap-2">
-                  <mat-icon class="text-purple-600 text-base mt-0.5">star</mat-icon>
+                <li class="flex items-start gap-3">
+                  <mat-icon class="text-purple-600 !text-xl mt-0.5 flex-shrink-0">star</mat-icon>
                   <span><strong>Angular 21:</strong> Framework mais recente com standalone components.</span>
                 </li>
-                <li class="flex items-start gap-2">
-                  <mat-icon class="text-purple-600 text-base mt-0.5">star</mat-icon>
+                <li class="flex items-start gap-3">
+                  <mat-icon class="text-purple-600 !text-xl mt-0.5 flex-shrink-0">star</mat-icon>
                   <span><strong>Tailwind CSS:</strong> Estilização moderna e utilitária.</span>
                 </li>
               </ul>
@@ -160,11 +160,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
       </mat-accordion>
 
       <!-- Arquitetura -->
-      <mat-card class="mb-8 shadow-lg">
+      <mat-card class="mb-8 mt-8 shadow-lg">
         <mat-card-header class="bg-gradient-to-r from-green-50 to-teal-50">
           <mat-card-title class="text-2xl flex items-center gap-2">
             <mat-icon class="text-green-600">architecture</mat-icon>
-            Arquitetura e Design
+            Arquitetura e Design (backend)
           </mat-card-title>
           <mat-card-subtitle>Clean Code e SOLID</mat-card-subtitle>
         </mat-card-header>
