@@ -21,7 +21,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     <div class="container mx-auto p-4 md:p-8 max-w-6xl">
       <!-- Header -->
       <div class="text-center mb-10 animate-fade-in-down">
-        <h1 class="text-4xl font-bold text-primary mb-2">Plataforma de Consulta de Créditos</h1>
+        <h1 class="text-4xl font-bold text-primary mb-2">Plataforma de Consulta de Créditos Constituídos</h1>
         <p class="text-lg text-gray-600">Solução Fullstack para o Desafio Técnico da Infuse Tecnologia</p>
         <p class="text-sm text-gray-500 mt-2">Uma aplicação robusta, moderna e containerizada desenvolvida com <strong>Java 25</strong>, <strong>Spring Boot 3</strong> e <strong>Angular 21</strong></p>
       </div>
@@ -258,7 +258,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
           <mat-list>
             <mat-list-item>
               <mat-icon matListItemIcon class="text-green-600">check_circle</mat-icon>
-              <div matListItemTitle>Consulta de créditos por número da NFS-e</div>
+              <div matListItemTitle>Consulta constituídos de créditos por número da NFS-e</div>
             </mat-list-item>
             <mat-list-item>
               <mat-icon matListItemIcon class="text-green-600">check_circle</mat-icon>

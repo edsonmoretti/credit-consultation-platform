@@ -26,7 +26,7 @@ import { Credito } from '../../models/credito.model';
       <!-- Header Section -->
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
         <div>
-          <h1 class="text-2xl font-bold text-gray-800">Consulta de Créditos</h1>
+          <h1 class="text-2xl font-bold text-gray-800">Consulta de Créditos Constituídos</h1>
           <p class="text-gray-500">Gerencie e visualize seus créditos de NFS-e</p>
         </div>
       </div>

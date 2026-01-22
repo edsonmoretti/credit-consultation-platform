@@ -1,4 +1,4 @@
-# Plataforma de Consulta de Créditos
+# Plataforma de Consulta de Créditos Constituídos
 
 > **Solução para o Desafio Técnico – Infuse Tecnologia**
 
@@ -123,7 +123,7 @@ Para fins de conferência, abaixo estão os requisitos originais solicitados pel
 
 *   **Tecnologias**: Java 8+, Spring Boot, Spring Data JPA, Hibernate, Angular.
 *   **Funcionalidades**:
-    *   [x] Consulta de créditos por número da NFS-e.
+    *   [x] Consulta de créditos Constituídos por número da NFS-e.
     *   [x] Exibição detalhada de um crédito.
     *   [x] Responsividade para dispositivos móveis.
     *   [x] Aplicação containerizada.

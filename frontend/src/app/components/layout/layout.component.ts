@@ -54,7 +54,7 @@ import { map, shareReplay } from 'rxjs/operators';
           <mat-nav-list class="pt-2">
             <a mat-list-item routerLink="/" routerLinkActive="!text-indigo-600 !bg-indigo-50 border-r-4 border-indigo-600" [routerLinkActiveOptions]="{exact: true}">
               <mat-icon matListItemIcon>receipt_long</mat-icon>
-              <span matListItemTitle class="font-medium">Consulta de Créditos</span>
+              <span matListItemTitle class="font-medium">Consulta de Créditos Constituídos</span>
             </a>
             <a mat-list-item href="http://localhost:8080/swagger-ui/index.html" target="_blank" class="text-gray-600 hover:bg-gray-50">
               <mat-icon matListItemIcon class="text-gray-400">api</mat-icon>
@@ -74,7 +74,7 @@ import { map, shareReplay } from 'rxjs/operators';
           </div>
 
           <footer class="absolute bottom-0 w-full p-8 text-center text-gray-500 text-sm border-t border-gray-200 bg-white z-10">
-            <p>&copy; {{ currentYear }} Plataforma de Consulta de Créditos. Construído por Edson Moretti do Nascimento.</p>
+            <p>&copy; {{ currentYear }} Plataforma de Consulta de Créditos Constituídos. Construído por Edson Moretti do Nascimento.</p>
           </footer>
         </mat-sidenav-content>
       </mat-sidenav-container>

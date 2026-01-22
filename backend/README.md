@@ -1,4 +1,4 @@
-# Backend - Plataforma de Consulta de Créditos
+# Backend - Plataforma de Consulta de Créditos Constituídos
 
 Este diretório contém o código-fonte do serviço de backend da aplicação, desenvolvido com **Java 25** e **Spring Boot 3**.
 

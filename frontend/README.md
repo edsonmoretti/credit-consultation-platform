@@ -1,4 +1,4 @@
-# Frontend - Plataforma de Consulta de Créditos
+# Frontend - Plataforma de Consulta de Créditos Constituídos
 
 Este diretório contém o código-fonte da interface web da aplicação, desenvolvida com **Angular 21**.
 
